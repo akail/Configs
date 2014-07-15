@@ -1,0 +1,253 @@
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+imap <buffer> <silent> <F5> <Plug>Tex_FastEnvironmentInsert
+imap <buffer> <silent> <S-F5> <Plug>Tex_FastEnvironmentChange
+inoremap <buffer> <silent> <S-F1> =Tex_PutEnvironment("eqnarray*")
+inoremap <buffer> <silent> <S-F2> =Tex_PutEnvironment("eqnarray")
+inoremap <buffer> <silent> <S-F3> =Tex_PutEnvironment("bmatrix")
+imap <buffer> <silent> <F7> <Plug>Tex_FastCommandInsert
+imap <buffer> <silent> <S-F7> <Plug>Tex_FastCommandChange
+imap <buffer> <F9> <Plug>Tex_Completion
+xmap <buffer> % <Plug>LatexBox_JumpToMatch
+nmap <buffer> % <Plug>LatexBox_JumpToMatch
+imap <buffer> <silent> â <Plug>Tex_MathBF
+imap <buffer> <silent> ã <Plug>Tex_MathCal
+imap <buffer> <silent> ì <Plug>Tex_LeftRight
+map <buffer> \ll :Latexmk
+map <buffer> \lv :LatexView
+nnoremap <buffer> \ls :call Tex_ForwardSearchLaTeX()
+nmap <buffer> <silent> \rf <Plug>Tex_RefreshFolds
+map <buffer> <silent> \lt :LatexTOC
+map <buffer> \le :LatexErrors
+map <buffer> \lk :LatexmkStop
+map <buffer> \lG :LatexmkStatus!
+map <buffer> \lg :LatexmkStatus
+map <buffer> \lC :LatexmkClean!
+map <buffer> \lc :LatexmkClean
+map <buffer> \lL :Latexmk!
+omap <buffer> a$ :normal va$
+vmap <buffer> a$ <Plug>LatexBox_SelectInlineMathOuter
+omap <buffer> ae :normal vae
+vmap <buffer> ae <Plug>LatexBox_SelectCurrentEnvOuter
+omap <buffer> i$ :normal vi$
+vmap <buffer> i$ <Plug>LatexBox_SelectInlineMathInner
+omap <buffer> ie :normal vie
+vmap <buffer> ie <Plug>LatexBox_SelectCurrentEnvInner
+nmap <buffer> <silent> <F5> <Plug>Tex_FastEnvironmentInsert
+nmap <buffer> <silent> <S-F5> <Plug>Tex_FastEnvironmentChange
+vmap <buffer> <silent> <F5> <Plug>Tex_FastEnvironmentInsert
+nmap <buffer> <silent> <F7> <Plug>Tex_FastCommandInsert
+nmap <buffer> <silent> <S-F7> <Plug>Tex_FastCommandChange
+vmap <buffer> <silent> <F7> <Plug>Tex_FastCommandInsert
+vnoremap <buffer> <silent> â `>a}`<i\mathbf{
+vnoremap <buffer> <silent> ã `>a}`<i\mathcal{
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:%\ -,mO:%\ \ ,eO:%%,:%
+setlocal commentstring=%%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=\\\\\\([egx]\\|char\\|mathchar\\|count\\|dimen\\|muskip\\|skip\\|toks\\)\\=def\\|\\\\font\\|\\\\\\(future\\)\\=let\\|\\\\new\\(count\\|dimen\\|skip\\|muskip\\|box\\|toks\\|read\\|write\\|fam\\|insert\\)\\|\\\\\\(re\\)\\=new\\(boolean\\|command\\|counter\\|environment\\|font\\|if\\|length\\|savebox\\|theorem\\(style\\)\\=\\)\\s*\\*\\=\\s*{\\=\\|DeclareMathOperator\\s*{\\=\\s*
+setlocal dictionary=~/.vim/bundle/latex-vim/ftplugin/latex-suite/dictionaries/dictionary
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'tex'
+setlocal filetype=tex
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=TexFoldTextFunction()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=\\\\input\\|\\\\include{
+setlocal includeexpr=substitute(v:fname,\ '^.\\{-}{\\|}.*',\ '',\ 'g')
+setlocal indentexpr=GetTeXIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,},=\\item,=\\bibitem
+setlocal noinfercase
+setlocal iskeyword=48-57,a-z,A-Z,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal nomodeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!Pl#Statusline(0,1)
+setlocal suffixesadd=.tex
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'tex'
+setlocal syntax=tex
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+12,20fold
+96,113fold
+146,148fold
+155,157fold
+165,167fold
+177,182fold
+87,185fold
+199,218fold
+254,256fold
+258,260fold
+269,271fold
+273,276fold
+285,290fold
+186,297fold
+329,331fold
+332,334fold
+340,342fold
+348,351fold
+371,375fold
+380,382fold
+391,393fold
+398,405fold
+413,419fold
+425,431fold
+444,455fold
+318,456fold
+464,466fold
+474,476fold
+478,480fold
+489,491fold
+457,494fold
+298,494fold
+1,494fold
+1
+normal! zo
+12
+normal! zo
+87
+normal! zo
+96
+normal! zo
+146
+normal! zo
+155
+normal! zo
+165
+normal! zo
+177
+normal! zo
+186
+normal! zo
+199
+normal! zo
+254
+normal! zo
+258
+normal! zo
+269
+normal! zo
+273
+normal! zo
+285
+normal! zo
+298
+normal! zo
+318
+normal! zo
+329
+normal! zo
+332
+normal! zo
+340
+normal! zo
+348
+normal! zo
+371
+normal! zo
+380
+normal! zo
+391
+normal! zo
+398
+normal! zo
+413
+normal! zo
+444
+normal! zo
+457
+normal! zo
+464
+normal! zo
+474
+normal! zo
+478
+normal! zo
+489
+normal! zo
+let s:l = 10 - ((9 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+10
+normal! 0
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+" vim: set ft=vim :

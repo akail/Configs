@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/etc/acpi'
+let g:netrw_dirhist_2='/home/akail/AKDEV/KFE/FEfuncts/3D.backup'
+let g:netrw_dirhist_3='/home/akail/AKDEV/CASES/KFE/rdtest/FEOutput'
+let g:netrw_dirhist_4='/home/akail/AKDEV/CASES/REDIFF/rdtest/FEOutput/time_dep'
+let g:netrw_dirhist_5='/home/akail/AKDEV/INS/Classes'
+let g:netrw_dirhist_6='/home/akail/AKDEV/CASES/INS/2DCASE-2/FEOutput/time_dep'
+let g:netrw_dirhist_7='/home/akail/Git/Configs/i3'

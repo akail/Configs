@@ -1,0 +1,12 @@
+a
+bclose
+bufkill
+c
+license
+list.txt
+minibufexplorer
+NERD_Tree
+snipmate
+syntastic
+taglist
+vim-powerline
