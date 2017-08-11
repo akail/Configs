@@ -1,0 +1,33 @@
+set number
+set incsearch
+set smartcase
+set hlsearch
+
+" Set my mapleader to be \
+let mapleader = '\'
+
+nmap <leader>q :nohlsearch<cr>
+
+
+" easy system clipboard copy/paste
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+noremap <leader>p "*p
+noremap <leader>P "*P
+
+"""""""""""""""""""""
+" Navigation settings
+"""""""""""""""""""""
+" These switching between splits in the window
+nnoremap <c-j> <c-W>j
+nnoremap <c-k> <c-W>k
+nnoremap <c-h> <c-W>h
+nnoremap <c-l> <c-W>l
+
+" Switches tabs
+noremap <c-n> :action NextTab<CR>
+noremap <c-p> :action PreviousTab<CR>
+
+
+
+
