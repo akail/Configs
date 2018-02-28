@@ -34,7 +34,9 @@ colors() {
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-alias vi="vim"
+set -o vi
+
+alias vi="nvim"
 alias ls="ls --color"
 alias l.="ls -d .*"
 alias la="ls -a"
@@ -43,6 +45,9 @@ alias grep="grep --color"
 alias ..="cd .."
 alias ...="cd ..."
 alias journalwatch='sudo journalctl -f'
+alias nvimrc='nvim ~/.config/nvim/init.vim'
+alias docker='sudo docker'
+alias pacman='sudo pacman'
 
 # added by Anaconda3 4.3.1 installer
 export PATH="/home/akail/anaconda3/bin:$PATH"
@@ -76,3 +81,5 @@ startssh() {
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_rsa
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
