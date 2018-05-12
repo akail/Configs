@@ -46,9 +46,24 @@ Plug 'Raimondi/delimitMate'
 " Fix python indentation
 Plug 'Vimjas/vim-python-pep8-indent'
 
-
 " Jinja2 syntax support
 Plug 'Glench/Vim-Jinja2-Syntax'
+
+" Vim color highlight
+Plug 'ap/vim-css-color'
+
+" Denite
+Plug 'Shougo/denite.nvim'
+
+" Better tmux navigation
+Plug 'christoomey/vim-tmux-navigator'
+
+" Vim Wiki
+Plug 'vimwiki/vimwiki'
+
+
+" Vimux
+Plug 'benmills/vimux'
 
 call plug#end()
 
@@ -124,6 +139,7 @@ nmap <F8> :TagbarToggle<CR>
 
 " fzf
 nmap \s :Files<CR>
+nmap \b :Buffers<CR>
 
 """"""""""""""""""""""""""""
 " Colorscheme settings
@@ -163,6 +179,17 @@ let g:deoplete#enable_profile = 1
 " DelimitMate
 let delimitMate_nesting_quotes = ['"']
 
+" Wiki config
+let g:vimwiki_list = [{'path': '~/SyncFolder/Notes/vimwiki/'}]
+
+" Vimuxh shortcuts
+
+map <Leader>vt :call VimuxRunCommand("make test"))<CR>
+map <Leader>vc :call VimuxRunCommand("make coverage"))<CR>
+map <Leader>vl :call VimuxRunLastCommand()<CR>
+map <Leader>ve :call VimuxCloseRunner()<CR>
+
+
 """"""""""""""""""""""""""""
 " Language Specific
 """"""""""""""""""""""""""""
@@ -185,6 +212,7 @@ highlight BadWhiteSpace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 autocmd BufNewFile *.py 0r ~/nvim/skeleton.py
+
 
 
 

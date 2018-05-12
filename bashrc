@@ -35,6 +35,8 @@ colors() {
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
 set -o vi
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
 
 alias vi="nvim"
 alias ls="ls --color"
@@ -50,8 +52,13 @@ alias docker='sudo docker'
 alias pacman='sudo pacman'
 
 # added by Anaconda3 4.3.1 installer
-export PATH="/home/akail/anaconda3/bin:$PATH"
-export PATH="/home/akail/Apps:$PATH"
+export PATH=/home/akail/miniconda3/bin:$PATH
+
+export PATH="/home/akail/Apps:/home/akail/Apps/bin:$PATH"
+
+export MPW_FULLNAME=akail
+export MPW_ASKPASS=/lib/cryptsetup/askpass 
+
 
 #Functions
 # This function will extract most common archives      

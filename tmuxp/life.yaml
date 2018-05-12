@@ -1,0 +1,43 @@
+session_name: life
+start_directory: /home/akail/code/life/
+windows:
+  - window_name: nvim
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate life
+        - export FLASK_APP=manage.py
+        - export FLASK_CONFIG=development
+        - clear
+        - nvim 
+  - window_name: shell
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate life
+        - export FLASK_APP=manage.py
+        - export FLASK_CONFIG=development
+        - clear
+  - window_name: server
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate life
+        - export FLASK_APP=manage.py
+        - export FLASK_CONFIG=development
+        - flask run --reload
+  - window_name: monitor
+    layout: tiled
+    panes:
+      - shell_command:
+        - task
+      - shell_command:
+        - watch -n 15 task project:life
+      - shell_command:
+        - htop
+  - window_name: psql
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate life
+        - pgcli life-dev

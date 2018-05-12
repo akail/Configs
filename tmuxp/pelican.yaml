@@ -1,0 +1,29 @@
+session_name: pelican
+start_directory: /home/akail/code/ownthestack/
+windows:
+  - window_name: nvim
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate pelican
+        - clear
+        - nvim 
+  - window_name: shell
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate pelican
+        - clear
+  - window_name: builder
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate pelican
+        - ./build.sh
+  - window_name: server
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate pelican
+        - cd build
+        - python -m pelican.server

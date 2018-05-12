@@ -1,0 +1,23 @@
+session_name: filisi
+start_directory: /home/akail/code/filisi/filisi_engine/
+windows:
+  - window_name: nvim
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate filisi_engine
+        - nvim 
+  - window_name: shell
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate filisi_engine
+  - window_name: monitor
+    layout: tiled
+    panes:
+      - shell_command:
+        - clear
+      - shell_command:
+        - watch -n 15 task project:filisi
+      - shell_command:
+        - htop
