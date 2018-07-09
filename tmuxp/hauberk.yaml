@@ -1,0 +1,17 @@
+session_name: hauberk
+start_directory: /home/akail/code/hauberk/
+windows:
+  - window_name: nvim
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate hauberk
+        - clear
+        - nvim 
+  - window_name: shell
+    layout: tiled
+    panes:
+      - shell_command:
+        - source activate life
+        - source activate hauberk
+        - clear

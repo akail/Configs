@@ -212,9 +212,3 @@ highlight BadWhiteSpace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 autocmd BufNewFile *.py 0r ~/nvim/skeleton.py
-
-
-
-
-
-

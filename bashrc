@@ -53,6 +53,7 @@ alias pacman='sudo pacman'
 
 # added by Anaconda3 4.3.1 installer
 export PATH=/home/akail/miniconda3/bin:$PATH
+. /home/akail/miniconda3/etc/profile.d/conda.sh
 
 export PATH="/home/akail/Apps:/home/akail/Apps/bin:$PATH"
 

@@ -1,0 +1,22 @@
+session_name: homelab
+windows:
+  - window_name: blue1
+    layout: tiled
+    panes:
+      - shell_command:
+        - ssh pi-blue-01
+  - window_name: blue2
+    layout: tiled
+    panes:
+      - shell_command:
+        - ssh pi-blue-01
+  - window_name: green1
+    layout: tiled
+    panes:
+      - shell_command:
+        - ssh pi-green-01
+  - window_name: red1
+    layout: tiled
+    panes:
+      - shell_command:
+        - ssh pi-red-01
