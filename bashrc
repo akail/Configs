@@ -39,13 +39,14 @@ export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
 alias vi="nvim"
+alias vim="nvim"
 alias ls="ls --color"
 alias l.="ls -d .*"
 alias la="ls -a"
 alias ll="ls -al"
 alias grep="grep --color"
 alias ..="cd .."
-alias ...="cd ..."
+alias ...="cd ../.."
 alias journalwatch='sudo journalctl -f'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
 alias docker='sudo docker'

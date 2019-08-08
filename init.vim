@@ -65,6 +65,16 @@ Plug 'vimwiki/vimwiki'
 " Vimux
 Plug 'benmills/vimux'
 
+" Testing stuff
+Plug 'janko/vim-test'
+
+Plug 'dhruvasagar/vim-table-mode'
+
+
+" Python syntax highlighting
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'vim-python/python-syntax'
+
 call plug#end()
 
 " General Configurations
@@ -72,7 +82,7 @@ call plug#end()
 set encoding=utf-8
 set nomodeline
 set mouse=a
-set nu
+set nu rnu
 set ignorecase
 set expandtab
 set incsearch
@@ -121,6 +131,10 @@ nmap <C-p> :bprev<CR>
 """"""""""""""""""""""""""""
 " Shortcuts
 """"""""""""""""""""""""""""
+
+" Toggle Relative line numbers
+nmap \r :set rnu!<CR>
+
 " Clear highlighted items
 nmap \q :nohlsearch<CR>
 
@@ -132,7 +146,6 @@ nmap \e :NERDTreeToggle<CR>
 nmap <F2> :wa <Enter>
 nmap <F3> :wqa <Enter>
 nmap <F4> :qa <Enter>
-nmap <F3> :wqa <Enter>
 
 " tagbar config
 nmap <F8> :TagbarToggle<CR>
@@ -146,7 +159,7 @@ nmap \b :Buffers<CR>
 """"""""""""""""""""""""""""
 syntax on
 set t_Co=256
-colorscheme gruvbox
+silent! colorscheme gruvbox
 set background=dark " use light or dark for gruvbox
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
@@ -168,6 +181,7 @@ let g:ctrlp_map = '\s'
 " ALe settings
 let g:ale_linters = {
   \ 'python': ['flake8', 'isort', 'mypy'] ,
+  \ 'latex': ['flake8', 'isort', 'mypy'] ,
   \ }
 let g:ale_python_flake8_options = '--max-line-length=119'
 
@@ -180,14 +194,28 @@ let g:deoplete#enable_profile = 1
 let delimitMate_nesting_quotes = ['"']
 
 " Wiki config
-let g:vimwiki_list = [{'path': '~/SyncFolder/Notes/vimwiki/'}]
+let g:vimwiki_list = [{
+            \'path': '~/SyncFolder/Notes/vimwiki/', 
+            \ 'auto_export': 1,
+            \ 'template_path': '~/SyncFolder/Notes/vimwiki/templates',
+            \ 'template_default': 'default',
+            \ 'template_ext': '.html'}]
+let g:vimwiki_table_mappings=0
+let g:vimwiki_table_auto_fmt=0 
+
+" Vim table mode
+let g:table_mode_corner='|'
+ let g:table_mode_eval_formula_map = '<Leader>tmfe'
 
 " Vimuxh shortcuts
 
-map <Leader>vt :call VimuxRunCommand("make test"))<CR>
-map <Leader>vc :call VimuxRunCommand("make coverage"))<CR>
-map <Leader>vl :call VimuxRunLastCommand()<CR>
-map <Leader>ve :call VimuxCloseRunner()<CR>
+" vim-test settings
+nmap <Leader>tn :TestNearest<CR>
+nmap <Leader>tf :TestFile<CR>
+nmap <Leader>ts :TestSuite<CR>
+nmap <Leader>tl :TestLast<CR>
+nmap <Leader>tv :TestVisit<CR>
+let test#python#runner = 'pytest'
 
 
 """"""""""""""""""""""""""""
@@ -212,3 +240,14 @@ highlight BadWhiteSpace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 autocmd BufNewFile *.py 0r ~/nvim/skeleton.py
+
+
+let g:python_highlight_all = 1
+
+
+if !empty($TMUX)
+    " TMUX Specific settings
+    
+    " Use vimux for vim-test
+    let test#strategy = "vimux"
+endif
