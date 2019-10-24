@@ -1,4 +1,4 @@
-# # ~/.bashrc
+#!/bin/bash
 #
 
 [[ $- != *i* ]] && return
@@ -49,8 +49,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias journalwatch='sudo journalctl -f'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
+alias bashrc='nvim ~/.mybashrc'
 alias docker='sudo docker'
 alias pacman='sudo pacman'
+alias wiki='cd $HOME/code; nvim -c "VimwikiIndex"; cd -'
 
 # added by Anaconda3 4.3.1 installer
 export PATH=/home/akail/miniconda3/bin:$PATH

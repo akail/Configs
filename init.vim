@@ -10,7 +10,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 
 " Status bar for bottom
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 " Ctrp Fuzzy Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -53,7 +53,7 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'ap/vim-css-color'
 
 " Denite
-Plug 'Shougo/denite.nvim'
+"Plug 'Shougo/denite.nvim'
 
 " Better tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -74,6 +74,12 @@ Plug 'dhruvasagar/vim-table-mode'
 " Python syntax highlighting
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'vim-python/python-syntax'
+
+" Snippets plugin
+Plug 'sirver/ultisnips'
+
+" Latex support
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -208,6 +214,9 @@ let g:table_mode_corner='|'
  let g:table_mode_eval_formula_map = '<Leader>tmfe'
 
 " Vimuxh shortcuts
+nmap <Leader>vp :VimuxPromptCommand<CR>
+nmap <Leader>vl :VimuxRunLastCommand<CR>
+nmap <Leader>vc :VimuxCloseRunner<CR>
 
 " vim-test settings
 nmap <Leader>tn :TestNearest<CR>
@@ -217,6 +226,22 @@ nmap <Leader>tl :TestLast<CR>
 nmap <Leader>tv :TestVisit<CR>
 let test#python#runner = 'pytest'
 
+" fugitive git bindings
+nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gw :Gwrite<CR><CR>
+nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <leader>gp :Ggrep<Space>
+nnoremap <leader>gm :Gmove<Space>
+nnoremap <leader>gb :Git branch<Space>
+nnoremap <leader>go :Git checkout<Space>
+nnoremap <leader>gps :Dispatch! git push<CR>
+nnoremap <leader>gpl :Dispatch! git pull<CR>
 
 """"""""""""""""""""""""""""
 " Language Specific
@@ -239,7 +264,7 @@ au FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2
 highlight BadWhiteSpace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-autocmd BufNewFile *.py 0r ~/nvim/skeleton.py
+"autocmd BufNewFile *.py r ~/nvim/skeleton.py
 
 
 let g:python_highlight_all = 1
@@ -251,3 +276,23 @@ if !empty($TMUX)
     " Use vimux for vim-test
     let test#strategy = "vimux"
 endif
+
+
+" Snippets configuration
+"let g:UltiSnipsSnippetsDir = $HOME."code/Configs/snippets"
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+"let g:UltiSnipsSnippetDirectories=["/home/akail/code/Configs/snippets"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "/home/akail/code/Configs/snippets"]
+
+" vimtex settings
+let g:vimtex_view_method = 'zathura'
+let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+" Spelling
+setlocal spell
+set spelllang=en_us
