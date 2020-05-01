@@ -1,0 +1,8 @@
+#AppData  -rw,soft,intr,rsize=8192,wsize=8192 192.168.1.236:/AppData
+#Media  -rw,soft,intr,rsize=8192,wsize=8192 192.168.1.236:/Media
+#OMV -fstype=cifs,username=akail /AppData ://192.168.1.236/AppData /Media ://192.168.1.236/Media
+OMV -fstype=cifs,rw,uid=1000,gid=1000 /AppData ://192.168.1.236/AppData /Media ://192.168.1.236/Media
+hass -fstype=cifs,rw,uid=1000,gid=1000,username=hassio,workgroup=workgroup,password=password /config ://hass.local/config
+backups -fstype=cifs,rw,uid=1000,gid=1000,username=akail,workgroup=WORKGROUP,password=password /Backups ://192.168.1.236/Backups
+
+
