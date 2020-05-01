@@ -78,8 +78,15 @@ Plug 'vim-python/python-syntax'
 " Snippets plugin
 Plug 'sirver/ultisnips'
 
-" Latex support
+" Latex support s
 Plug 'lervag/vimtex'
+
+" Slime and IPython Cells 
+Plug 'jpalardy/vim-slime', { 'for': 'python' }
+Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+"Plug 'kshenoy/vim-signature'
+
+"jeetsukumaran/vim-buffergator
 
 call plug#end()
 
@@ -201,9 +208,9 @@ let delimitMate_nesting_quotes = ['"']
 
 " Wiki config
 let g:vimwiki_list = [{
-            \'path': '~/SyncFolder/Notes/vimwiki/', 
+            \'path': '~/Nextcloud2/NotesVimWiki/vimwiki/', 
             \ 'auto_export': 1,
-            \ 'template_path': '~/SyncFolder/Notes/vimwiki/templates',
+            \ 'template_path': '~/Nextcloud2/NotesVimWiki/vimwiki/templates',
             \ 'template_default': 'default',
             \ 'template_ext': '.html'}]
 let g:vimwiki_table_mappings=0
@@ -243,6 +250,44 @@ nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
 
+" slim config
+let g:slime_target = 'tmux'
+let g:slime_python_ipython = 1
+let g:slime_default_config = {
+            \ 'socket_name': get(split($TMUX, ','), 0),
+            \ 'target_pane': '{top-right}' }
+let g:slime_dont_ask_default = 1
+
+" vim-ipython-cell
+let g:ipython_cell_delimit_cells_by = 'tags'
+let g:ipython_cell_tag = '#C'
+
+" map <Leader>r to run script
+autocmd FileType python nnoremap <buffer> <Leader>ir :IPythonCellRun<CR>
+
+" map <Leader>R to run script and time the execution
+autocmd FileType python nnoremap <buffer> <Leader>iR :IPythonCellRunTime<CR>
+
+" map <Leader>c to execute the current cell
+autocmd FileType python nnoremap <buffer> <Leader>ic :IPythonCellExecuteCell<CR>
+
+" map <Leader>C to execute the current cell and jump to the next cell
+autocmd FileType python nnoremap <buffer> <Leader>iC :IPythonCellExecuteCellJump<CR>
+
+" map <Leader>l to clear IPython screen
+autocmd FileType python nnoremap <buffer> <Leader>il :IPythonCellClear<CR>
+
+" map <Leader>x to close all Matplotlib figure windows
+autocmd FileType python nnoremap <buffer> <Leader>ix :IPythonCellClose<CR>
+
+" map [c and ]c to jump to the previous and next cell header
+autocmd FileType python nnoremap <buffer> [i :IPythonCellPrevCell<CR>
+autocmd FileType python nnoremap <buffer> ]i :IPythonCellNextCell<CR>
+
+" map <Leader>h to send the current line or current selection to IPython
+autocmd FileType python nnoremap <buffer> <Leader>ih <Plug>SlimeLineSend
+
+
 """"""""""""""""""""""""""""
 " Language Specific
 """"""""""""""""""""""""""""
@@ -277,22 +322,29 @@ if !empty($TMUX)
     let test#strategy = "vimux"
 endif
 
-
+ 
 " Snippets configuration
-"let g:UltiSnipsSnippetsDir = $HOME."code/Configs/snippets"
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-"let g:UltiSnipsSnippetDirectories=["/home/akail/code/Configs/snippets"]
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "/home/akail/code/Configs/snippets"]
 
 " vimtex settings
+let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
+"vimtex deoplete support
+call deoplete#custom#var('omni', 'input_patterns', {
+            \ 'tex': g:vimtex#re#deoplete
+            \})
+
 " Spelling
 setlocal spell
 set spelllang=en_us
+syntax spell toplevel
+
+

@@ -1,0 +1,139 @@
+
+global !p
+texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C',
+'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS',
+'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
+
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	try:
+		first = next(
+            i for i in reversed(synstackids)
+            if i in texIgnoreMathZoneIds or i in texMathZoneIds
+        )
+		return first != ignore
+	except StopIteration:
+		return False
+endglobal
+
+snippet acr "Acronym"
+\newacronym{$1}{`!p snip.rv = t[1].upper()`}{$2}
+$0
+endsnippet
+
+snippet todo "Todo comment"
+% TODO: ${1} AAK - `date +%F`
+endsnippet
+
+snippet toc "Table of Contents"
+\tableofcontents
+$0
+endsnippet
+
+snippet cite "Citation"
+\cite{$0}
+endsnippet
+
+snippet ssec "Sub Section"
+\subsection{$1}
+$0
+endsnippet
+
+snippet sec "Section"
+\section{$1}
+$0
+endsnippet
+
+snippet basedoc "Base document"
+\documentclass{${1:article}}
+\begin{document}
+\title{${2:TITLE}}
+\author{Andrew Kail}
+\data{`date +%F`}
+\maketitle
+$0
+\end{document}
+endsnippet
+
+snippet basenote "Base Notes Document"
+\documentclass{${1:paper}}
+\begin{document}
+\title{${2:TITLE}}
+\author{Andrew Kail}
+\maketitle
+$0
+\end{document}
+endsnippet
+
+snippet today "Date"
+`date +%F`
+endsnippet
+
+snippet beg "begin{} / end{}" bA
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+# inline math
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
+endsnippet
+
+# display math
+snippet dm "Math" wA
+\[
+$1
+.\] $0
+endsnippet
+
+context "math()"
+snippet sr "^2" iA
+^2
+endsnippet
+
+context "math()"
+snippet cb "^3" iA
+^3
+endsnippet
+
+context "math()"
+snippet compl "complement" iA
+^{c}
+endsnippet
+
+context "math()"
+snippet sq "\sqrt{}" iA
+\sqrt{${1:${VISUAL}}} $0
+endsnippet
+
+context "math()"
+snippet td "to the ... power" iA
+^{$1}$0
+endsnippet
+
+context "math()"
+snippet rd "to the ... power" iA
+^{($1)}$0
+endsnippet
+
+snippet td "superscript" iA
+^{$1}$0
+endsnippet
+
+context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet

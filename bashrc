@@ -53,6 +53,7 @@ alias bashrc='nvim ~/.mybashrc'
 alias docker='sudo docker'
 alias pacman='sudo pacman'
 alias wiki='cd $HOME/code; nvim -c "VimwikiIndex"; cd -'
+alias taif='tail -f'
 
 # added by Anaconda3 4.3.1 installer
 export PATH=/home/akail/miniconda3/bin:$PATH
@@ -91,6 +92,10 @@ extract () {
 startssh() {
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_rsa
+}
+
+wiki2df(){
+    pandoc -f vimwiki -o $2 $1
 }
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

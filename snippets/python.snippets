@@ -1,0 +1,56 @@
+
+global !p
+
+def get_dir_and_file_name(snip):
+	"""Return current files and module name"""
+	return os.getcwd().split(os.sep)[-1] + '.' + snip.basename
+
+endglobal
+
+snippet todo "ToDo"
+# TODO: $1 AAK `date +%Y-%m-%d`
+
+endsnippet
+
+snippet ifmain "Ifmain" b
+def $1():
+	pass
+
+if __name__ == "__main__":
+	$1()
+endsnippet
+
+snippet docfile "File Docstring" b
+# -*- coding: utf-8 -*-
+"""
+	`!p snip.rv = get_dir_and_file_name(snip)`
+	`!p snip.rv = '~' * len(get_dir_and_file_name(snip))`
+
+	${1:DESCRIPTION}
+
+	:copyright: (c) `date +%Y` by ${2:YOUR_NAME}.
+	:license: ${3:LICENSE_NAME}, see LICENSE for more details.
+"""
+$0
+endsnippet
+
+snippet fdbmodel "Flask Database Model"
+class $1(db.Model):
+	__tablename__ = "`!p snip.rv = t[1].lower() + "s"`"
+endsnippet
+
+snippet fdbc "Flask DB Model Column"
+$1 = db.Column(db.$2)
+$0
+endsnippet
+
+snippet fdbidc "FLask Database ID Column"
+id = db.Column(db.Integer, primary_key=True)
+$0
+endsnippet
+
+
+snippet ipyembed "IPython embed call"
+from IPython import embed; embed()
+$0
+endsnippet
