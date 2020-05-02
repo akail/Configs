@@ -29,6 +29,7 @@ npm
 obs-studio
 okular
 openvpn
+python-pynvim
 qbittorrent
 redshift
 rsnapshot
@@ -158,10 +159,10 @@ texlive-science
 thunderbird
 tmux
 tmuxp
+trizen
 vlc
 xsane
 xsane-gimp
 yakuake
 zathura
 zsh
-trizen

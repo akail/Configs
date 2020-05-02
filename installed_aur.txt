@@ -1,6 +1,6 @@
-breeze-kde4
 brother-hl2270dw
 brother-mfc-j470dw
 brscan4
 battlescribe
 zotero
+bitwarden

@@ -201,7 +201,8 @@ let g:ale_python_flake8_options = '--max-line-length=119'
 " Deoplete
 let g:deoplete#enable_at_startup=1
 autocmd CompleteDone * silent! pclose!
-let g:deoplete#enable_profile = 1
+"let g:deoplete#enable_profile = 1
+call deoplete#custom#option('profile', v:true)
 
 " DelimitMate
 let delimitMate_nesting_quotes = ['"']
