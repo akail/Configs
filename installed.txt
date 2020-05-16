@@ -9,6 +9,7 @@ breeze-gtk
 breeze-icons
 calibre
 chromium
+ctags
 dia
 docker
 esptool
@@ -29,6 +30,7 @@ npm
 obs-studio
 okular
 openvpn
+poetry
 python-pynvim
 qbittorrent
 redshift
@@ -165,4 +167,6 @@ xsane
 xsane-gimp
 yakuake
 zathura
+zathura-pdf-poppler
 zsh
+xsel

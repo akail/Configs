@@ -4,3 +4,4 @@ brscan4
 battlescribe
 zotero
 bitwarden
+spotify

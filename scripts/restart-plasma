@@ -1,0 +1,3 @@
+#!/bin/bash
+
+killall plasmashell && kstart5 plasmashell 2>&1 > /dev/null

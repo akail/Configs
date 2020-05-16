@@ -88,6 +88,9 @@ Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 
 "jeetsukumaran/vim-buffergator
 
+" Vim indentation guides
+Plug 'nathanaelkane/vim-indent-guides'
+
 call plug#end()
 
 " General Configurations
@@ -335,6 +338,7 @@ let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
+"let g:vimtex_syntax_enabled=1
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
@@ -343,9 +347,11 @@ call deoplete#custom#var('omni', 'input_patterns', {
             \ 'tex': g:vimtex#re#deoplete
             \})
 
-" Spelling
-setlocal spell
+" Vim color scheme seetings
+let g:indent_guides_enable_on_vim_startup = 1
+
+" Spelling Should be near the bottom
+set spell
 set spelllang=en_us
-syntax spell toplevel
 
 
