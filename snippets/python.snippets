@@ -34,6 +34,15 @@ snippet docfile "File Docstring" b
 $0
 endsnippet
 
+snippet dfunc "Define a Function" b
+def $1($2):
+	"""${3:FUNCTION DESCRIPTION}
+
+	$4
+	"""
+	$0
+endsnippet
+
 snippet fdbmodel "Flask Database Model"
 class $1(db.Model):
 	__tablename__ = "`!p snip.rv = t[1].lower() + "s"`"
@@ -49,6 +58,12 @@ id = db.Column(db.Integer, primary_key=True)
 $0
 endsnippet
 
+snippet fview "Flask view"
+@$1.route("/$2")
+def $3($4):
+	"""$5"""
+	return render_template("$6")
+endsnippet
 
 snippet ipyembed "IPython embed call"
 from IPython import embed; embed()

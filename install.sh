@@ -36,6 +36,7 @@ ln -s $CWD/tmuxp $HOME/.tmuxp
 mkdir -p $HOME/.config/nvim
 rm -f $HOME/.config/nvim/init.vim
 ln -s $CWD/init.vim $HOME/.config/nvim/init.vim
+ln -s $CWD/snippets $HOME/.config/nvim/UltiSnips
 
 # copy scripts folder
 rm -rf $HOME/Apps
@@ -62,3 +63,16 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # add spotify gpg signatures
 curl -sS https://download.spotify.com/debian/pubkey.gpg | gpg --import -
+
+# install anaconda requirements
+export PATH=$PATH:/home/akail/miniconda3/bin
+. /home/akail/miniconda3/etc/profile.d/conda.sh
+conda install jupyter jupyterlab
+
+jupyter labextension install jupyterlab_vim
+jupyter labextension install @jupyterlab/toc
+
+# Add poetry auto completion
+mkdir ~/.zfunc
+poetry completions zsh > ~/.zfunc/_poetry
+#sudo poetry completions bash > /etc/bash_completion.d/poetry.bash-completion

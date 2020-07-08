@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+  - name: install neovim
+    package:
+      name: neovim
+      state: present
+  - name: install ansible-lint
+    package:
+      name: ansible-lint
+      state: present
+  - name: install vagrant
+    package:
+      name: vagrant
+      state: present

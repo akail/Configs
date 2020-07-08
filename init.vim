@@ -91,6 +91,19 @@ Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 " Vim indentation guides
 Plug 'nathanaelkane/vim-indent-guides'
 
+" Easy motion
+Plug 'easymotion/vim-easymotion'
+
+" Vim multiple cursors
+" Messes with next buffer 
+"Plug 'terryma/vim-multiple-cursors'
+
+" Auto-increment dates
+Plug 'tpope/vim-speeddating'
+
+" Repeat better with .
+Plug 'tpope/vim-repeat'
+
 call plug#end()
 
 " General Configurations
@@ -196,8 +209,8 @@ let g:ctrlp_map = '\s'
 
 " ALe settings
 let g:ale_linters = {
-  \ 'python': ['flake8', 'isort', 'mypy'] ,
-  \ 'latex': ['flake8', 'isort', 'mypy'] ,
+  \ 'python': ['flake8', 'isort', 'pydocstyle'] ,
+  \ 'latex': ['flake8', 'isort'] ,
   \ }
 let g:ale_python_flake8_options = '--max-line-length=119'
 
@@ -251,7 +264,7 @@ nnoremap <leader>gp :Ggrep<Space>
 nnoremap <leader>gm :Gmove<Space>
 nnoremap <leader>gb :Git branch<Space>
 nnoremap <leader>go :Git checkout<Space>
-nnoremap <leader>gps :Dispatch! git push<CR>
+nnoremap <leader>gps :Git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
 
 " slim config
@@ -331,7 +344,7 @@ endif
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "/home/akail/code/Configs/snippets"]
+"let g:UltiSnipsSnippetDirectories=["UltiSnips", "/home/akail/code/Configs/snippets"]
 
 " vimtex settings
 let g:vimtex_compiler_progname = 'nvr'
@@ -349,6 +362,19 @@ call deoplete#custom#var('omni', 'input_patterns', {
 
 " Vim color scheme seetings
 let g:indent_guides_enable_on_vim_startup = 1
+
+" Easy motion configuration
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Spelling Should be near the bottom
 set spell

@@ -28,6 +28,9 @@ export PATH=$PATH:/home/akail/miniconda3/bin
 
 export PATH=/home/akail/code/Configs/scripts/:$PATH
 
+# Set the fzf command to use fd instead of find.  Allows leveraging .gitignore in a directory
+export FZF_DEFAULT_COMMAND='fd --type f'
+
 #Functions
 # This function will extract most common archives      
 extract () {

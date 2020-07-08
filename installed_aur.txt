@@ -5,3 +5,10 @@ battlescribe
 zotero
 bitwarden
 spotify
+obs-v4l2sink
+redshift-qt
+
+# work
+amazon-workspacesclient
+virtualbox-ext-oracle
+

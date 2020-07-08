@@ -2,19 +2,15 @@ session_name: hass
 start_directory: /home/akail
 windows:
   - window_name: main
-    layout: main-horizontal
+    layout: main-vertical
     options:
-      main-pane-height: 80
+      main-pane-width: 160
     panes:
       - shell_command:
-        - cd /mnt/hass/config
-        - conda activate hass
+        - cd ~/Projects/homeassistant
         - clear
       - shell_command:
-        - ssh root@hass.kail.io
-  - window_name: shell
-    layout: tiled
-    panes:
+        - cd /mnt/hass/config
+        - clear
       - shell_command:
-        - ssh pi-blue-01
-        - sudo su - 
+        - ssh root@hass.local
