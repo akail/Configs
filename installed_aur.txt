@@ -7,8 +7,10 @@ bitwarden
 spotify
 obs-v4l2sink
 redshift-qt
+slack-desktop
+zoom
 
 # work
 amazon-workspacesclient
 virtualbox-ext-oracle
-
+teams

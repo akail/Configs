@@ -18,7 +18,6 @@ echo "source $HOME/code/Configs/bashrc" >> $HOME/.bashrc
 #rm -f $HOME/.myzshrc
 #ln -s $CWD/zshrc $HOME/.myzshrc
 #echo "source $HOME/.myzshrc" >> $HOME/.zshrc
-echo "source $HOME/code/Configs/zshrc" >> $HOME/.zshrc
 
 
 rm -f $HOME/.condarc
@@ -56,6 +55,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 rm -rf $HOME/.oh-my-zsh/lib/conda.zsh
 ln -s $CWD/conda.zsh $HOME/.oh-my-zsh/lib/conda.zsh
+echo "source $HOME/code/Configs/zshrc" >> $HOME/.zshrc
 
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -76,3 +76,12 @@ jupyter labextension install @jupyterlab/toc
 mkdir ~/.zfunc
 poetry completions zsh > ~/.zfunc/_poetry
 #sudo poetry completions bash > /etc/bash_completion.d/poetry.bash-completion
+
+# make sure nvim is installed in anaconda base.  neovim doesn't always catch the correct
+# python interpreter when in a pshell
+conda install -y pynvim
+
+## ssh config
+mkdir -p $HOME/.ssh
+ln -s $CWD/ssh_config ~/.ssh/config
+chmod 600 ~/.ssh/config

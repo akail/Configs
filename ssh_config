@@ -1,0 +1,5 @@
+Host dstftp
+    HostName ftp.datainscience.com
+    User akail
+    Port 22
+    IdentityFile ~/.ssh/dst-hpc.pem

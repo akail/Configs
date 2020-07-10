@@ -11,6 +11,7 @@ calibre
 chromium
 ctags
 dia
+discord
 docker
 esptool
 fd
@@ -175,4 +176,8 @@ xsel
 linux-headers
 v4l2loopback-dkms
 virtualbox
-linux54-virtualbox-host-modules
+linux56-virtualbox-host-modules
+vagrant
+xclip
+lutris
+flameshot
