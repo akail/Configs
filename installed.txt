@@ -181,3 +181,5 @@ vagrant
 xclip
 lutris
 flameshot
+nerd-fonts-noto-sans-mono
+crun
