@@ -9,6 +9,7 @@ obs-v4l2sink
 redshift-qt
 slack-desktop
 zoom
+podman-compose
 
 # work
 amazon-workspacesclient

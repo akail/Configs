@@ -181,3 +181,4 @@ vagrant
 xclip
 lutris
 flameshot
+podman

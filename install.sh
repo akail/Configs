@@ -85,3 +85,6 @@ conda install -y pynvim
 mkdir -p $HOME/.ssh
 ln -s $CWD/ssh_config ~/.ssh/config
 chmod 600 ~/.ssh/config
+
+echo "akail:165536:4096" >> /etc/subuid
+echo "akail:165536:4096" >> /etc/subgid
