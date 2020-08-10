@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $1 in
+    enable*)
+        pactl load-module module-echo-cancel source_name=noechosource sink_name=noechosink && echo "Echo control enabled"
+        ;;
+    disable*)
+        pactl unload-module module-echo-cancel && echo "Echo control disabled"
+        ;;
+    *)
+        echo "Please use argument disable or enable"
+        ;;
+esac
+
