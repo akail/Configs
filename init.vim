@@ -104,6 +104,9 @@ Plug 'tpope/vim-speeddating'
 " Repeat better with .
 Plug 'tpope/vim-repeat'
 
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 call plug#end()
 
 " General Configurations
@@ -361,7 +364,7 @@ call deoplete#custom#var('omni', 'input_patterns', {
             \})
 
 " Vim color scheme seetings
-let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_enable_on_vim_startup = 1
 
 " Easy motion configuration
 " <Leader>f{char} to move to {char}

@@ -3,3 +3,18 @@ Host dstftp
     User akail
     Port 22
     IdentityFile ~/.ssh/dst-hpc.pem
+
+Host bluefalcon
+    HostName 192.168.2.147
+    User akail
+    Port 22
+
+Host omv
+    HostName 192.168.1.236
+    User root
+    port 22
+
+Host hass
+    HostName 192.168.1.100
+    User root
+    port 22

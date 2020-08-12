@@ -1,22 +1,14 @@
 session_name: kailio
-start_directory: /home/akail/Projects/akail.github.io.flask/
+start_directory: /home/akail/Projects/kailio
 windows:
-  - window_name: nvim
+  - window_name: editor
     layout: tiled
     panes:
       - shell_command:
-        - conda activate kailio
+        - pshell
         - nvim 
-  - window_name: shell
+  - window_name: podman
     layout: tiled
     panes:
       - shell_command:
-        - conda activate kailio
-  - window_name: server
-    layout: tiled
-    panes:
-      - shell_command:
-        - conda activate kailio
-        - export FLASK_APP=kailio.wsgi
-        - export KAILIO_SETTINGS=$PWD/development_config.py
-        - make run
+        - pc up

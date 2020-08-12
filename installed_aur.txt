@@ -10,6 +10,7 @@ redshift-qt
 slack-desktop
 zoom
 podman-compose
+plex-media-player
 
 # work
 amazon-workspacesclient
