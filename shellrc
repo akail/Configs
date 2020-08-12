@@ -18,6 +18,8 @@ alias journalwatch='sudo journalctl -f'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
 alias shellrc='nvim $HOME/code/Configs/shellrc'
 alias docker='sudo docker'
+alias pc='podman-compose'
+alias jpl='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia jupyter lab'
 alias pacman='sudo pacman'
 alias taif='tail -f'
 alias spotify="/usr/bin/spotify --force-device-scale-factor=2"
