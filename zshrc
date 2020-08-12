@@ -22,4 +22,4 @@ pshell() {
 
 alias zshrc='nvim $HOME/code/Configs/zshrc'
 
-source $HOME/code/Configs/shellrc
+source $HOME/.all_shellrc

@@ -16,7 +16,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias journalwatch='sudo journalctl -f'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
-alias shellrc='nvim $HOME/code/Configs/shellrc'
 alias docker='sudo docker'
 alias pacman='sudo pacman'
 alias taif='tail -f'
@@ -65,3 +64,5 @@ wiki2df(){
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH=$HOME/bin:$PATH
