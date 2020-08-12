@@ -16,7 +16,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias journalwatch='sudo journalctl -f'
 alias nvimrc='nvim ~/.config/nvim/init.vim'
-alias shellrc='nvim $HOME/code/Configs/shellrc'
 alias docker='sudo docker'
 alias pc='podman-compose'
 alias jpl='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia jupyter lab'
@@ -67,3 +66,5 @@ wiki2df(){
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH=$HOME/bin:$PATH
