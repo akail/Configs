@@ -76,7 +76,9 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'vim-python/python-syntax'
 
 " Snippets plugin
-Plug 'sirver/ultisnips'
+if has('python3')
+    Plug 'sirver/ultisnips'
+endif
 
 " Latex support s
 Plug 'lervag/vimtex'
@@ -218,9 +220,11 @@ let g:ale_linters = {
 let g:ale_python_flake8_options = '--max-line-length=119'
 
 " Deoplete
-let g:deoplete#enable_at_startup=1
-autocmd CompleteDone * silent! pclose!
+if has('python3')
+    let g:deoplete#enable_at_startup=1
+endif
 "let g:deoplete#enable_profile = 1
+autocmd CompleteDone * silent! pclose!
 call deoplete#custom#option('profile', v:true)
 
 " DelimitMate
@@ -348,6 +352,11 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 "let g:UltiSnipsSnippetDirectories=["UltiSnips", "/home/akail/code/Configs/snippets"]
+
+if !has('python3')
+   let g:did_UltiSnips_vim = 1
+   let g:did_UltiSnips_vim_after = 1
+endif
 
 " vimtex settings
 let g:vimtex_compiler_progname = 'nvr'

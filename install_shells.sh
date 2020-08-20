@@ -4,6 +4,10 @@ CWD=$PWD
 
 ln -s $CWD/shellrc $HOME/.all_shellrc
 
+if [ ! -f $HOME/.localrc ]; then
+    cp $CWD/localrc $HOME/.localrc
+fi
+
 echo "source $CWD/bashrc" >> $HOME/.bashrc
 
 # install ohmyzsh
