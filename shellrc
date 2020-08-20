@@ -1,5 +1,11 @@
 #!/bin/bash
 #
+HOME_CONDA=1
+
+if [ -f $HOME/.localrc ] ;
+then
+    . $HOME/.localrc;
+fi
 
 set -o vi
 export EDITOR='nvim'
@@ -21,9 +27,15 @@ alias pacman='sudo pacman'
 alias taif='tail -f'
 alias spotify="/usr/bin/spotify --force-device-scale-factor=2"
 
+home_conda() {
+    export PATH=$PATH:/home/akail/miniconda3/bin;
+    . /home/akail/miniconda3/etc/profile.d/conda.sh;
+}
+
 # added by Anaconda3 4.3.1 installer
-export PATH=$PATH:/home/akail/miniconda3/bin
-. /home/akail/miniconda3/etc/profile.d/conda.sh
+if [ "$HOME_CONDA" -eq "1" ]; then
+    home_conda
+fi
 
 export PATH=/home/akail/code/Configs/scripts/:$PATH
 
