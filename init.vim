@@ -52,24 +52,14 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 " Vim color highlight
 Plug 'ap/vim-css-color'
 
-" Denite
-"Plug 'Shougo/denite.nvim'
-
 " Better tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
-
-" Vim Wiki
-Plug 'vimwiki/vimwiki'
-
 
 " Vimux
 Plug 'benmills/vimux'
 
 " Testing stuff
 Plug 'janko/vim-test'
-
-Plug 'dhruvasagar/vim-table-mode'
-
 
 " Python syntax highlighting
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
@@ -86,9 +76,6 @@ Plug 'lervag/vimtex'
 " Slime and IPython Cells 
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
-"Plug 'kshenoy/vim-signature'
-
-"jeetsukumaran/vim-buffergator
 
 " Vim indentation guides
 Plug 'nathanaelkane/vim-indent-guides'
@@ -106,8 +93,10 @@ Plug 'tpope/vim-speeddating'
 " Repeat better with .
 Plug 'tpope/vim-repeat'
 
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+if $ENABLE_DEVICONS=="1"
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+endif
 
 call plug#end()
 
@@ -133,14 +122,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " Code Folding
-"set foldmethod=indent
 set foldlevel=99
-"let g:SimpylFold_docstring_preview = 1 " Enable docstrings to be shown
-"autocmd BufWinLeave *.* mkview
-"autocmd BufWinEnter *.* silent loadview 
-
-
-        
 
 """"""""""""""""""""""""""""
 " Navigation 
@@ -171,7 +153,6 @@ nmap \r :set rnu!<CR>
 
 " Clear highlighted items
 nmap \q :nohlsearch<CR>
-
 
 " Toggle file tree browser \e
 nmap \e :NERDTreeToggle<CR>
@@ -208,10 +189,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-
-"CtrlP settings
-let g:ctrlp_map = '\s'
-
 " ALe settings
 let g:ale_linters = {
   \ 'python': ['flake8', 'isort', 'pydocstyle'] ,
@@ -229,20 +206,6 @@ call deoplete#custom#option('profile', v:true)
 
 " DelimitMate
 let delimitMate_nesting_quotes = ['"']
-
-" Wiki config
-let g:vimwiki_list = [{
-            \'path': '~/Nextcloud2/NotesVimWiki/vimwiki/', 
-            \ 'auto_export': 1,
-            \ 'template_path': '~/Nextcloud2/NotesVimWiki/vimwiki/templates',
-            \ 'template_default': 'default',
-            \ 'template_ext': '.html'}]
-let g:vimwiki_table_mappings=0
-let g:vimwiki_table_auto_fmt=0 
-
-" Vim table mode
-let g:table_mode_corner='|'
- let g:table_mode_eval_formula_map = '<Leader>tmfe'
 
 " Vimuxh shortcuts
 nmap <Leader>vp :VimuxPromptCommand<CR>
@@ -316,13 +279,13 @@ autocmd FileType python nnoremap <buffer> <Leader>ih <Plug>SlimeLineSend
 " Language Specific
 """"""""""""""""""""""""""""
 
-au BufNewFile,BufRead *.js, *.html, *.css
+au BufNewFile,BufRead *.js,*.html,*.css
     \ set tabstop=2
     \| set softtabstop=2
     \| set shiftwidth=2
 
 au BufNewFile,BufRead *.py
-    \| set textwidth=119
+    \ set textwidth=119
     \| set expandtab
     \| set autoindent
     \| set fileformat=unix
@@ -332,8 +295,6 @@ au FileType yaml set tabstop=2 softtabstop=2 shiftwidth=2
 
 highlight BadWhiteSpace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-"autocmd BufNewFile *.py r ~/nvim/skeleton.py
 
 
 let g:python_highlight_all = 1
@@ -345,7 +306,6 @@ if !empty($TMUX)
     " Use vimux for vim-test
     let test#strategy = "vimux"
 endif
-
  
 " Snippets configuration
 let g:UltiSnipsExpandTrigger = '<tab>'
@@ -391,5 +351,3 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " Spelling Should be near the bottom
 set spell
 set spelllang=en_us
-
-

@@ -1,0 +1,7 @@
+session_name: mlnotes
+start_directory: /home/akail/Projects/data-analysis/notes
+windows:
+  - window_name: nvim
+    panes:
+      - shell_command:
+        - nvim main.tex

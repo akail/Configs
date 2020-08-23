@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-HOME_CONDA=1
+export HOME_CONDA=1
+export ENABLE_DEVICONS=1
 
 if [ -f $HOME/.localrc ] ;
 then
