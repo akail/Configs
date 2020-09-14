@@ -29,6 +29,7 @@ alias jpl='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia jupyter 
 alias pacman='sudo pacman'
 alias taif='tail -f'
 alias spotify="/usr/bin/spotify --force-device-scale-factor=2"
+alias ghist="history | grep -i "
 
 home_conda() {
     export PATH=$PATH:/home/akail/miniconda3/bin;

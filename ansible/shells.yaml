@@ -1,0 +1,16 @@
+---
+- hosts: all
+  tasks:
+  - name : install zsh
+    become: yes
+    package:
+      name: zsh
+      state: present
+  - name : install bash
+    become: yes
+    package:
+      name: bash
+      state: present
+  - name: link all shellrc
+  - name: link loca
+

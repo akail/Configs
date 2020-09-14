@@ -1,5 +1,12 @@
 "
-call plug#begin('~/.local/share/nvim/plugged')
+
+if has('nvim')
+    let plug_dir = '~/.local/share/nvim/plugged'
+else
+    let plug_dir = '~/.vim/plugged'
+endif
+
+call plug#begin(plug_dir)
 " Gruvbox colorscheme
 Plug 'morhetz/gruvbox'
 
@@ -30,7 +37,14 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-surround'
 
 " jedi-vim
-Plug 'Shougo/deoplete.nvim'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 Plug 'zchee/deoplete-jedi'
 
 " SuperTab

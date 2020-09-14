@@ -1,0 +1,34 @@
+---
+- hosts: all
+  tasks:
+  - name: install tmux
+    package:
+      name: tmux
+      state: present
+  - name: install tmuxp
+    package:
+      name: tmuxp
+      state: present
+  - name: Insure directories exist
+    file:
+      path: '/home/akail/{{item.path}}'
+      state: directory
+    loop:
+      - { path: ".tmux/plugins"}
+      #- { path: ""}
+  - name: Link tmux configuration
+    file:
+      src: "{{playbook_dir}}/../tmux.conf"
+      dest: /home/akail/.tmux.conf
+      state: link
+  - name: Link tmuxp directory
+    file:
+      src: "{{playbook_dir}}/../tmuxp"
+      dest: /home/akail/.tmuxp
+      state: link
+  - name: Clone tmux package manager
+    git:
+      repo: https://github.com/tmux-plugins/tpm
+      dest: "~/.tmux/plugins/tpm"
+  - name: Install tmux plugins
+    shell: ~/.tmux/plugins/tpm/bin/install_plugins
