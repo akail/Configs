@@ -12,8 +12,6 @@ set -o vi
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
-alias vi="nvim"
-alias vim="nvim"
 alias ls="ls --color"
 alias l.="ls -d .*"
 alias la="ls -a"
