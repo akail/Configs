@@ -1,7 +1,8 @@
 #!/bin/bash
 #
-export HOME_CONDA=1
-export ENABLE_DEVICONS=1
+export HOME_CONDA=0
+export USR_LOCAL_CONDA=0
+export ENABLE_DEVICONS=0
 
 if [ -f $HOME/.localrc ] ;
 then
@@ -30,13 +31,28 @@ alias spotify="/usr/bin/spotify --force-device-scale-factor=2"
 alias ghist="history | grep -i "
 
 home_conda() {
-    export PATH=$PATH:/home/akail/miniconda3/bin;
-    . /home/akail/miniconda3/etc/profile.d/conda.sh;
+    if [[ -d $HOME/miniconda3 ]]
+    then
+        export PATH=$PATH:/home/akail/miniconda3/bin;
+        . /home/akail/miniconda3/etc/profile.d/conda.sh;
+    fi
+}
+
+usr_local_conda() {
+    if [[ -d /usr/local/anaconda ]]
+    then
+        export PATH=$PATH:/usr/local/anaconda/bin;
+        . /usr/local/anaconda/etc/profile.d/conda.sh;
+    fi
 }
 
 # added by Anaconda3 4.3.1 installer
 if [ "$HOME_CONDA" -eq "1" ]; then
     home_conda
+fi
+
+if [ "$USR_LOCAL_CONDA" -eq "1" ]; then
+    usr_local_conda
 fi
 
 export PATH=/home/akail/code/Configs/scripts/:$PATH
@@ -77,6 +93,5 @@ wiki2df(){
     pandoc -f vimwiki -o $2 $1
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH=$HOME/bin:$PATH

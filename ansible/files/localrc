@@ -1,3 +1,4 @@
 # Current defaults from shellrc
 #HOME_CONDA=1
+#USR_LOCAL_CONDA=1
 #ENABLE_DEVICONS=1

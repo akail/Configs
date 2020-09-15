@@ -2,11 +2,18 @@
 - hosts: all # move to local?
   tasks:
   - name: Autofs configurations
-    file:
-      src: "{{playbook_dir}}/../auto.omv"
-      dest: /
-      state: link
-
-      /etc/autofs/auto.omv
-
-       /mnt   /etc/autofs/auto.omv --timeout 60 --browse
+    become: yes
+    copy:
+      src: "{{playbook_dir}}/files/auto.omv"
+      dest: /etc/autofs/auto.omv
+  - name:
+    become: yes
+    lineinfile:
+      path: /etc/autofs/auto.master
+      line: "/mnt   /etc/autofs/auto.omv --timeout 60 --browse"
+  - name:
+    become: yes
+    systemd:
+      name: autofs
+      state: started
+      enabled: yes

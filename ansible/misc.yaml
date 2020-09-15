@@ -1,29 +1,40 @@
 ---
 - hosts: all
   tasks:
-  - name: Link git configuration
-    file:
-      src: "{{playbook_dir}}/../gitconfig"
-      dest: /home/akail/.gitconfig
-      state: link
-  - name: Link postgres cli configuration
-    file:
-      src: "{{playbook_dir}}/../pgcli.conf"
-      dest: /home/akail/.pgcli.conf
-      state: link
+
   - name: Insure ssh directories exist
     file:
-      path: '/home/akail/{{item.path}}'
+      path: '/home/akail/.ssh'
       state: directory
-    loop:
-      - { path: ".ssh"}
+
   - name: ssh directory permissions
     file:
       path: '/home/akail/.ssh'
       mode: '0755'
-  - name: Link ssh configuration
+
+
+  - name: Link configuration files
     file:
-      src: "{{playbook_dir}}/../ssh_config"
-      dest: /home/akail/.ssh/config
+      src: "{{playbook_dir}}/files/{{item.src}}"
+      dest: "/home/akail/{{item.dest}}"
       state: link
+    loop:
+      - { src: "condarc", dest: ".condarc" }
+      - { src: "gitconfig", dest: ".gitconfig" }
+      - { src: "pgcli.conf", dest: ".pgcli.conf" }
+      - { src: "ssh_config", dest: ".ssh/config" }
+      - { src: "scripts", dest: "Apps" }
+
+  - name: podman non-root setuid
+    become: yes
+    lineinfile:
+      path: '/etc/{{item.path}}'
+      line: 'akail:165536:4096'
+      create: yes
+    loop:
+      - { path: 'subuid'}
+      - { path: 'subgid'}
+
+  - name: Add spotify gpg signatures
+    shell: curl -sS https://download.spotify.com/debian/pubkey.gpg | gpg --import -
 

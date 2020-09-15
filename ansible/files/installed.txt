@@ -30,7 +30,6 @@ gramps
 htop
 inkscape
 linux-headers
-linux56-virtualbox-host-modules
 lutris
 lutris
 mathjax
@@ -54,6 +53,7 @@ redshift
 rsnapshot
 snappy
 steam-manjaro
+strace
 tesseract
 tesseract-data-afr
 tesseract-data-amh
@@ -183,6 +183,7 @@ trizen
 v4l2loopback-dkms
 vagrant
 vagrant
+vim
 virtualbox
 virtualbox
 vlc

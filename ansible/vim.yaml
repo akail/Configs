@@ -16,7 +16,6 @@
     package:
       name: python-pynvim
       state: present
-
   - name: Insure directories exist
     file:
       path: '/home/akail/{{item.path}}'
@@ -32,7 +31,7 @@
 
   - name: Link vim configs
     file:
-      src: '{{playbook_dir}}/../init.vim'
+      src: '{{playbook_dir}}/files/init.vim'
       dest: '/home/akail/{{item.dest}}'
       state: link
     loop:
@@ -40,7 +39,7 @@
       - { dest: ".vimrc" }
   - name: Link UltiSnips files
     file:
-      src: "{{playbook_dir}}/../snippets"
+      src: "{{playbook_dir}}/files/snippets"
       dest: /home/akail/.config/nvim/UltiSnips
       state: link
   - name: Download vim-plug
@@ -52,5 +51,10 @@
     loop:
       - { dest: ".local/share/nvim/site/autoload/plug.vim" }
       - { dest: ".vim/autoload/plug.vim" }
+  - name: Run nvim plugin updates
+    shell: nvim +"PlugUpdate --sync" +"qa"
+  - name: Run vim plugin updates
+    shell: vim +"PlugUpdate --sync" +"qa"
+    
 
 

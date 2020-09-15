@@ -11,6 +11,67 @@
     package:
       name: bash
       state: present
-  - name: link all shellrc
-  - name: link loca
+  - name: Link shell configs
+    file:
+      src: '{{playbook_dir}}/files/{{item.src}}'
+      dest: '{{ansible_env.HOME}}/{{item.dest}}'
+      state: link
+    loop:
+      - { dest: ".all_shellrc", src: "shellrc"}
+      - { dest: ".my_bashrc", src: "bashrc"}
+      - { dest: ".my_zshrc", src: "zshrc"}
+  - name: Copy skeleton localrc
+    copy:
+      src: '{{playbook_dir}}/files/localrc'
+      dest: '{{ansible_env.HOME}}/.localrc'
+      force: no
+  - name: Add source my rc files
+    lineinfile:
+      path: '{{ansible_env.HOME}}/{{item.path}}'
+      line: 'source {{item.src}}'
+    loop:
+      - { path: '.zshrc', src: '{{ansible_env.HOME}}/.my_zshrc'}
+      - { path: '.bashrc', src: '{{ansible_env.HOME}}/.my_bashrc'}
+  - name: Set zsh theme
+    lineinfile:
+      path: '{{ansible_env.HOME}}/.zshrc'
+      line: ZSH_THEME="custom-gnzh"
+      regexp: '^ZSH_THEME='
+
+  - name: Check oh-my-zsh directory exists
+    stat: 'path={{ansible_env.HOME}}/.oh-my-zsh'
+    register: status
+
+  - name: Install oh-my-zsh
+    shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    when:  status.stat.exists == false
+
+  - name: Link custom conda zsh
+    file:
+      src: '{{playbook_dir}}/files/conda.zsh'
+      dest: '{{ansible_env.HOME}}/.oh-my-zsh/lib/conda.zsh'
+      state: link
+  - name: Link custom zsh theme
+    file:
+      src: '{{playbook_dir}}/files/gnzh.zsh-theme'
+      dest: '{{ansible_env.HOME}}/.oh-my-zsh/themes/custom-gnzh.zsh-theme'
+      state: link
+  - name: Set default shell to zsh
+    become: yes
+    user:
+      name: akail
+      shell: /usr/bin/zsh
+
+  - name: Make poetry auto completion directory
+    file:
+      path: '{{ansible_env.HOME}}/.zfunc'
+      state: directory
+
+  - name: Poetry file status
+    stat: 'path={{ansible_env.HOME}}/.zfunc/_poetry'
+    register: poetry_zfunc
+
+  - name: Poetry file completion
+    shell: 'poetry completions zsh > {{ansible_env.HOME}}/.zfunc/_poetry'
+    when: not poetry_zfunc.stat.exists
 

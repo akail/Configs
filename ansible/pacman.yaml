@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: Update pacman mirrors
+      become: yes
+      shell: pacman-mirrors --geoip
+    - name: Run all updates
+      become: yes
+      pacman:
+        update_cache: yes
+        upgrade: yes
+

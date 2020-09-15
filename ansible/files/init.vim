@@ -220,7 +220,10 @@ if has('python3')
 endif
 "let g:deoplete#enable_profile = 1
 autocmd CompleteDone * silent! pclose!
-call deoplete#custom#option('profile', v:true)
+
+if exists('deoplete')
+    call deoplete#custom#option('profile', v:true)
+endif
 
 " DelimitMate
 let delimitMate_nesting_quotes = ['"']
@@ -329,7 +332,7 @@ endif
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-"let g:UltiSnipsSnippetDirectories=["UltiSnips", "/home/akail/code/Configs/snippets"]
+"let g:UltiSnipsSnippetDirectories=["UltiSnips", "/home/akail/.config/nvim/UltiSnips"]
 
 if !has('python3')
    let g:did_UltiSnips_vim = 1
@@ -346,9 +349,11 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 "vimtex deoplete support
+if exists('deoplete')
 call deoplete#custom#var('omni', 'input_patterns', {
             \ 'tex': g:vimtex#re#deoplete
             \})
+endif
 
 " Vim color scheme seetings
 "let g:indent_guides_enable_on_vim_startup = 1

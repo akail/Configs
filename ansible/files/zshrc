@@ -20,6 +20,8 @@ pshell() {
 }
 
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 alias zshrc='nvim $HOME/code/Configs/zshrc'
 
 source $HOME/.all_shellrc

@@ -1,0 +1,10 @@
+name: fastai
+channels:
+  - fastai
+  - conda-forge
+  - defaults
+dependencies:
+  - fastai
+  - ipython
+  - ipykernel
+  - pytorch

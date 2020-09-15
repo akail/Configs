@@ -2,10 +2,12 @@
 - hosts: all
   tasks:
   - name: install tmux
+    become: true
     package:
       name: tmux
       state: present
   - name: install tmuxp
+    become: true
     package:
       name: tmuxp
       state: present
@@ -18,12 +20,12 @@
       #- { path: ""}
   - name: Link tmux configuration
     file:
-      src: "{{playbook_dir}}/../tmux.conf"
+      src: "{{playbook_dir}}/files/tmux.conf"
       dest: /home/akail/.tmux.conf
       state: link
   - name: Link tmuxp directory
     file:
-      src: "{{playbook_dir}}/../tmuxp"
+      src: "{{playbook_dir}}/files/tmuxp"
       dest: /home/akail/.tmuxp
       state: link
   - name: Clone tmux package manager

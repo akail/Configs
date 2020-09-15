@@ -1,0 +1,9 @@
+name: nlp
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - ipython
+  - ipykernel
+  - nltk
+  - spacy
