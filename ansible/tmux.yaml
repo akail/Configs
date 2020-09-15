@@ -9,7 +9,7 @@
     package:
       name: tmuxp
       state: present
-  - name: Insure directories exist
+  - name: Insure tmux directories exist
     file:
       path: '/home/akail/{{item.path}}'
       state: directory

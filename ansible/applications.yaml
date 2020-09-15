@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+  - name: install packages
+    package:
+      name: "{{item}}"
+      state: present
+    loop: "{{lookup('file', '{{playbook_dir}}/../installed.txt').splitlines() }}"
+  - name: install virtualbox host
+    package: 
+      name: "linux{{''.join(ansible_kernel.split('.')[:2])}}-virtualbox-host-modules"
+      state: present
+  - name: install aur packages
+    package:
+      name: "{{item}}"
+      state: present
+    loop: "{{lookup('file', '{{playbook_dir}}/../installed_aur.txt').splitlines() }}"
+
+# if laptop, optimus-qt

@@ -1,0 +1,12 @@
+---
+- hosts: all # move to local?
+  tasks:
+  - name: Autofs configurations
+    file:
+      src: "{{playbook_dir}}/../auto.omv"
+      dest: /
+      state: link
+
+      /etc/autofs/auto.omv
+
+       /mnt   /etc/autofs/auto.omv --timeout 60 --browse

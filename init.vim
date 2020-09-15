@@ -77,7 +77,7 @@ Plug 'janko/vim-test'
 
 " Python syntax highlighting
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-Plug 'vim-python/python-syntax'
+"Plug 'vim-python/python-syntax'
 
 " Snippets plugin
 if has('python3')
@@ -111,6 +111,10 @@ if $ENABLE_DEVICONS=="1"
     Plug 'ryanoasis/vim-devicons'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 endif
+
+Plug 'mhinz/vim-startify'
+
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -362,6 +366,28 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
+" Startify configuration
+let g:startify_session_dir = '~/.config/nvim/session'
+let g:startify_change_to_vcs_root = 1
+let g:startify_enable_special = 0
+let g:startify_session_delete_buffers = 1
+let g:startify_session_persistence = 1
+"let g:startify_lists = [
+          "\ { 'type': 'files',     'header': ['   Files']            },
+          "\ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+          "\ { 'type': 'sessions',  'header': ['   Sessions']       },
+          "\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          "\ ]
+"let g:startify_bookmarks = [
+            "\ { 'c': '~/.config/i3/config' },
+            "\ { 'i': '~/.config/nvim/init.vim' },
+            "\ { 'z': '~/.zshrc' },
+            "\ '~/Blog',
+            "\ '~/Code',
+            "\ '~/Pics',
+            "\ ]
 " Spelling Should be near the bottom
 set spell
 set spelllang=en_us
+
+
