@@ -32,12 +32,6 @@
     loop:
       - { path: '.zshrc', src: '{{ansible_env.HOME}}/.my_zshrc'}
       - { path: '.bashrc', src: '{{ansible_env.HOME}}/.my_bashrc'}
-  - name: Set zsh theme
-    lineinfile:
-      path: '{{ansible_env.HOME}}/.zshrc'
-      line: ZSH_THEME="custom-gnzh"
-      regexp: '^ZSH_THEME='
-
   - name: Check oh-my-zsh directory exists
     stat: 'path={{ansible_env.HOME}}/.oh-my-zsh'
     register: status
@@ -56,6 +50,14 @@
       src: '{{playbook_dir}}/files/gnzh.zsh-theme'
       dest: '{{ansible_env.HOME}}/.oh-my-zsh/themes/custom-gnzh.zsh-theme'
       state: link
+
+  - name: Set zsh theme
+    lineinfile:
+      path: '{{ansible_env.HOME}}/.zshrc'
+      line: ZSH_THEME="custom-gnzh"
+      regexp: '^ZSH_THEME='
+
+
   - name: Set default shell to zsh
     become: yes
     user:

@@ -6,3 +6,13 @@ Installing tmux and nvim and anaconda as well
   * [ ] SLU
   * [ ] Biogen
   * [ ] Home
+
+Order:
+* pacman
+* misc
+* applications
+* tmux
+* vim
+* shells
+* anaconda
+* autofs
