@@ -1,0 +1,24 @@
+---
+- hosts: all
+  tasks:
+    - name: Check for preexisting connection for VPN.
+      command: nmcli -t -f name,state connection
+      changed_when: false
+      register: nmcli_connection_check
+
+    - name: Add biogen vpn
+      command: "nmcli connection add 
+                ifname tun0 
+                connection.id BIOGEN 
+                type vpn 
+                vpn-type openconnect 
+                vpn.data \"gateway=161.199.168.6,protocol=anyconnect\""
+      when: "'BIOGEN' not in nmcli_connection_check.stdout"
+    - name: Add slu vpn
+      command: "nmcli connection add 
+                ifname tun1 
+                connection.id SLU 
+                type vpn 
+                vpn-type openconnect 
+                vpn.data \"gateway=connect.slu.edu,protocol=gp\""
+      when: "'SLU' not in nmcli_connection_check.stdout"
