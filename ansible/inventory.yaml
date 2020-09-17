@@ -1,0 +1,21 @@
+all:
+  hosts:
+    blackfalcon:
+  children:
+    personalcomputers:
+      hosts:
+        blackfalcon:
+        bluefalcon:
+    virtualmachines:
+      hosts:
+        purplepidgin:
+    personalservers:
+      hosts:
+        omv:
+    dstservers:
+      hosts:
+        bw.datainscience.com:
+        ftp.datainscience.com:
+    biogenservers:
+      hosts:
+        pilothead01.hpc.biogen.com:

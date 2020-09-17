@@ -3,9 +3,10 @@
 Installing tmux and nvim and anaconda as well
 
 * [ ] VPNs
-  * [ ] SLU
-  * [ ] Biogen
+  * [X] SLU
+  * [X] Biogen
   * [ ] Home
+* [ ] Check for zsh integration and don't install zsh stuff if not there.
 
 Order:
 * pacman
@@ -16,3 +17,4 @@ Order:
 * shells
 * anaconda
 * autofs
+

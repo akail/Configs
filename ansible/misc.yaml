@@ -1,18 +1,6 @@
 ---
 - hosts: all
   tasks:
-
-  - name: Insure ssh directories exist
-    file:
-      path: '/home/akail/.ssh'
-      state: directory
-
-  - name: ssh directory permissions
-    file:
-      path: '/home/akail/.ssh'
-      mode: '0755'
-
-
   - name: Link configuration files
     file:
       src: "{{playbook_dir}}/files/{{item.src}}"
@@ -22,7 +10,6 @@
       - { src: "condarc", dest: ".condarc" }
       - { src: "gitconfig", dest: ".gitconfig" }
       - { src: "pgcli.conf", dest: ".pgcli.conf" }
-      - { src: "ssh_config", dest: ".ssh/config" }
       - { src: "scripts", dest: "Apps" }
 
   - name: podman non-root setuid

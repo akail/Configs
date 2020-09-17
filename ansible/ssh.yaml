@@ -1,0 +1,29 @@
+---
+- hosts: all
+  tasks:
+    - name: Insure ssh directories exist
+      file:
+        path: '{{ansible_env.HOME}}/.ssh'
+        state: directory
+
+    - name: ssh directory permissions
+      file:
+        path: '{{ansible_env.HOME}}/.ssh'
+        mode: '0755'
+
+    - name: Link configuration files
+      file:
+        src: "{{playbook_dir}}/files/{{item.src}}"
+        dest: "{{ansible_env.HOME}}/{{item.dest}}"
+        state: link
+      loop:
+        - { src: "ssh_config", dest: ".ssh/config" }
+
+    - name: Copy private keys
+      copy:
+        src: "{{playbook_dir}}/vault/aws-dst.pem"
+        dest: "{{ansible_env.HOME}}/.ssh/aws-dst.pem"
+        decrypt: yes
+        mode: "0600"
+        backup: no
+

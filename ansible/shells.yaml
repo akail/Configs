@@ -1,4 +1,4 @@
----
+-/home/akail--
 - hosts: all
   tasks:
   - name : install zsh
