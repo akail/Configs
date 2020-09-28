@@ -8,3 +8,4 @@ dependencies:
   - pynvim
   - kaggle
   - ipython
+  - jupyterlab_code_formatter

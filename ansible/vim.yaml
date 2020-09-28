@@ -6,16 +6,19 @@
     package:
       name: neovim
       state: present
+
   - name: install vim
     become: yes
     package:
       name: vim
       state: present
-  - name: Install pynvim
+
+  - name: Install node
     become: yes
     package:
-      name: python-pynvim
+      name: nodejs
       state: present
+
   - name: Insure directories exist
     file:
       path: '/home/akail/{{item.path}}'
@@ -27,7 +30,19 @@
       - { path: ".local/share/nvim/site/autoload"}
       - { path: ".vim/autoload"}
       - { path: ".vim/plugged"}
-      #- { path: ""}
+
+  - name: Create neovim python virtual environments
+    pip:
+      name: pynvim
+      virtualenv: "{{ansible_env.HOME}}/.local/share/nvim/pynvim3"
+      virtualenv_command: /usr/bin/python3 -m venv
+      
+  - name: Add packages to vim environment
+    pip:
+      name: "{{item}}"
+      virtualenv: "{{ansible_env.HOME}}/.local/share/nvim/pynvim3"
+    loop:
+      - neovim-remote
 
   - name: Link vim configs
     file:
@@ -37,24 +52,30 @@
     loop:
       - { dest: ".config/nvim/init.vim" }
       - { dest: ".vimrc" }
+
   - name: Link UltiSnips files
     file:
       src: "{{playbook_dir}}/files/snippets"
       dest: /home/akail/.config/nvim/UltiSnips
       state: link
+
   - name: Download vim-plug
     get_url:
       url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
       dest: '/home/akail/{{item.dest}}'
       mode: 0644
-
     loop:
       - { dest: ".local/share/nvim/site/autoload/plug.vim" }
       - { dest: ".vim/autoload/plug.vim" }
+
   - name: Run nvim plugin updates
     shell: nvim +"PlugUpdate --sync" +"qa"
+
   - name: Run vim plugin updates
     shell: vim +"PlugUpdate --sync" +"qa"
+
+  - name: Install coc.nvim plugins
+    shell: nvim +"CocInstall -sync coc-python coc-html coc-json coc-css coc-yaml" +"qa"
     
 
 

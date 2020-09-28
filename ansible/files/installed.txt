@@ -199,3 +199,5 @@ zathura-pdf-poppler
 zsh
 krdc
 freerdp
+xdotool
+python-pipx

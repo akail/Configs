@@ -2,7 +2,7 @@ Host dstftp
     HostName ftp.datainscience.com
     User akail
     Port 22
-    IdentityFile ~/.ssh/dst-hpc.pem
+    IdentityFile ~/.ssh/dst-ftp.pem
 
 Host bitwarden
     HostName bw.datainscience.com

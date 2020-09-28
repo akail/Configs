@@ -1,0 +1,72 @@
+---
+- hosts: all
+  tasks:
+    - include_role:
+        name: "andrewrothstein.miniconda"
+      vars:
+        miniconda_make_sys_default: False
+
+    - include_role:
+        name: "andrewrothstein.conda-env"
+      vars:
+        conda_env_name: 'base'
+        conda_env_environment: "{{playbook_dir}}/anaconda/base.yaml"
+        conda_env_update_if_present: True
+
+    - include_role:
+        name: "andrewrothstein.conda-env"
+      vars:
+        conda_env_name: '{{item.name}}'
+        conda_env_environment: "{{playbook_dir}}/anaconda/{{item.name}}.yaml"
+        conda_env_update_if_present: False
+        conda_env_escalate: False
+        conda_env_env_ymls: "{{ansible_env.HOME}}/.conda/env-ymls"
+      loop:
+        - {name: 'mlearn'}
+        - {name: 'fastai'}
+        - {name: 'nlp'}
+
+    - name: Install ipython kernels for environments
+      shell: "{{ansible_env.HOME}}/.conda/envs/{{item}}/bin/ipython kernel install --user --name={{item}}"
+      loop:
+        - 'mlearn'
+        - 'fastai'
+        - 'nlp'
+
+    - name: Install python packages
+      become: yes
+      package:
+        name: "{{item}}"
+        state: present
+      loop: 
+        - python-black
+        - python-isort
+        - python-pipx
+
+    - name: Install jupyter lab extensions
+      shell: "/usr/local/anaconda/bin/jupyter labextension install {{item}}"
+      become: yes
+      loop:
+        - "@axlair/jupyterlab_vim"
+        - "@jupyterlab/toc"
+        - "@arbennett/base16-gruvbox-dark"
+        - "@lckr/jupyterlab_variableinspector"
+        - "@aquirdturtle/collapsible_headings"
+        - "@krassowski/jupyterlab_go_to_definition"
+        - "@ryantam626/jupyterlab_code_formatter"
+
+
+    - name: Enable jupyterlab code formatter server extension
+      become: yes
+      shell: "/usr/local/anaconda/bin/jupyter serverextension enable --py jupyterlab_code_formatter"
+
+    - name: Jupyter lab git
+      become: yes
+      shell: "/usr/local/anaconda/bin/pip install --upgrade jupyterlab-git; /usr/local/anaconda/bin/jupyter lab build"
+
+    - name: Install pipx applications
+      shell: pipx install kaggle
+      loop:
+        - kaggle
+        - cookiecutter
+        - dvc

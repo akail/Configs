@@ -1,19 +1,28 @@
 ---
 - hosts: all # move to local?
-  tasks:
-  - name: Autofs configurations
-    become: yes
-    copy:
-      src: "{{playbook_dir}}/files/auto.omv"
-      dest: /etc/autofs/auto.omv
-  - name:
-    become: yes
-    lineinfile:
-      path: /etc/autofs/auto.master
-      line: "/mnt   /etc/autofs/auto.omv --timeout 60 --browse"
-  - name:
-    become: yes
-    systemd:
-      name: autofs
-      state: started
-      enabled: yes
+  roles:
+    - name: Mount OMV Data
+      become: true
+      role: cmprescott.autofs
+      autofs_indirect_maps:
+        - name: "auto.omv"
+          path: "/mnt"
+          mark: "NFS Mounts from NAS"
+          options: "--timeout60 --browse"
+          mounts:
+            - name: OMV
+              fstype: cifs,rw,uid=1000,gid=1000
+              url: "/AppData ://192.168.1.236/AppData /Media ://192.168.1.236/Media"
+            - name: backups
+              fstype: "cifs,rw,uid=1000,gid=1000,username=akail,workgroup=WORKGROUP,password=VLT#29ndrwk"
+              url: '/Backups ://192.168.1.236/Backups'
+            - name: storage
+              fstype: "cifs,rw,uid=1000,gid=1000,username=akail,workgroup=WORKGROUP,password=VLT#29ndrwk"
+              url: "/ ://192.168.1.236/Storage"
+
+            - name: hass
+              fstype: "cifs,rw,uid=1000,gid=1000,username=hassio,workgroup=WORKGROUP,password=SMB#29ndrwk"
+              url: "/config ://192.168.1.100/config"
+
+
+

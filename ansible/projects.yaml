@@ -5,16 +5,27 @@
       file:
         path: '{{ansible_env.HOME}}/Projects'
         state: directory
+
+    - name: Add known hosts
+      known_hosts:
+        path: "{{ansible_env.HOME}}/.ssh/known_hosts"
+        name: "{{item}}"
+        state: present
+        key: "{{ lookup('file', 'pubkeys/'+ item )}}"
+      loop:
+        - github.com
+        - git.kail.io
+
     - name: github projects
       git: 
         repo: "{{item.repo}}"
         dest: "{{ansible_env.HOME}}/Projects/{{item.path}}"
       loop:
-        - {repo: 'https://github.com/akail/kailio', path: "kailio"}
-        - {repo: 'https://github.com/akail/homeassistant', path: "homeassistant"}
-        - {repo: 'https://github.com/akail/hauberk', path: "hauberk"}
-        - {repo: 'https://github.com/akail/Configs', path: "Configs"}
-        - {repo: 'https://github.com/akail/scanner', path: "scanner"}
-        - {repo: 'https://git.kail.io/akail/ml-projects', path: "ml-projects"}
-        - {repo: 'https://git.kail.io/akail/dissertation', path: "dissertation"}
+        - {repo: 'git@github.com:akail/kailio', path: "kailio"}
+        - {repo: 'git@github.com:akail/homeassistant', path: "homeassistant"}
+        - {repo: 'git@github.com:akail/hauberk', path: "hauberk"}
+        - {repo: 'git@github.com:akail/Configs', path: "Configs"}
+        - {repo: 'git@github.com:akail/scanner', path: "scanner"}
+        - {repo: 'git@git.kail.io:akail/ml-projects.git', path: "ml-projects"}
+        - {repo: 'git@git.kail.io:akail/dissertation.git', path: "dissertation"}
         

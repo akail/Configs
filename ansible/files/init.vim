@@ -1,4 +1,5 @@
-"
+
+let g:python3_host_prog = '/home/akail/.local/share/nvim/pynvim3/bin/python'
 
 if has('nvim')
     let plug_dir = '~/.local/share/nvim/plugged'
@@ -28,7 +29,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Asynchronous Linter
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 " Tagbar
 Plug 'majutsushi/tagbar'
@@ -37,15 +38,15 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-surround'
 
 " jedi-vim
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
+"if has('nvim')
+    "Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
+"else
+    "Plug 'Shougo/deoplete.nvim'
+    "Plug 'roxma/nvim-yarp'
+    "Plug 'roxma/vim-hug-neovim-rpc'
+"endif
 
-Plug 'zchee/deoplete-jedi'
+"Plug 'deoplete-plugins/deoplete-jedi'
 
 " SuperTab
 Plug 'ervandew/supertab'
@@ -81,8 +82,9 @@ Plug 'janko/vim-test'
 
 " Snippets plugin
 if has('python3')
-    Plug 'sirver/ultisnips'
+    Plug 'SirVer/ultisnips'
 endif
+Plug 'honza/vim-snippets'
 
 " Latex support s
 Plug 'lervag/vimtex'
@@ -115,6 +117,8 @@ endif
 Plug 'mhinz/vim-startify'
 
 Plug 'sheerun/vim-polyglot'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -208,22 +212,22 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " ALe settings
-let g:ale_linters = {
-  \ 'python': ['flake8', 'isort', 'pydocstyle'] ,
-  \ 'latex': ['flake8', 'isort'] ,
-  \ }
-let g:ale_python_flake8_options = '--max-line-length=119'
+"let g:ale_linters = {
+  "\ 'python': ['flake8', 'isort', 'pydocstyle'] ,
+  "\ 'latex': ['flake8', 'isort'] ,
+  "\ }
+"let g:ale_python_flake8_options = '--max-line-length=119'
 
 " Deoplete
-if has('python3')
-    let g:deoplete#enable_at_startup=1
-endif
-"let g:deoplete#enable_profile = 1
-autocmd CompleteDone * silent! pclose!
+"if has('python3')
+    "let g:deoplete#enable_at_startup=1
+"endif
+""let g:deoplete#enable_profile = 1
+"autocmd CompleteDone * silent! pclose!
 
-if exists('deoplete')
-    call deoplete#custom#option('profile', v:true)
-endif
+"if exists('deoplete')
+    "call deoplete#custom#option('profile', v:true)
+"endif
 
 " DelimitMate
 let delimitMate_nesting_quotes = ['"']
@@ -340,7 +344,8 @@ if !has('python3')
 endif
 
 " vimtex settings
-let g:vimtex_compiler_progname = 'nvr'
+"let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_compiler_progname = '/home/akail/.local/share/nvim/pynvim3/bin/nvr'
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
@@ -349,11 +354,11 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 "vimtex deoplete support
-if exists('deoplete')
-call deoplete#custom#var('omni', 'input_patterns', {
-            \ 'tex': g:vimtex#re#deoplete
-            \})
-endif
+"if exists('deoplete')
+"call deoplete#custom#var('omni', 'input_patterns', {
+            "\ 'tex': g:vimtex#re#deoplete
+            "\})
+"endif
 
 " Vim color scheme seetings
 "let g:indent_guides_enable_on_vim_startup = 1

@@ -24,4 +24,16 @@
 
   - name: Add spotify gpg signatures
     shell: curl -sS https://download.spotify.com/debian/pubkey.gpg | gpg --import -
+  - name: Nextcloud links
+    file:
+      dest: "{{ansible_env.HOME}}/{{item.dest}}"
+      src: "{{ansible_env.HOME}}/Nextcloud/{{item.src}}"
+      state: link
+      force: yes
+    loop:
+      - {src: "Documents", dest: "Documents"}
+      - {src: "School", dest: "School"}
+      - {src: "Photos", dest: "Pictures"}
+      - {src: "Videos", dest: "Videos"}
+      - {src: "Work/DST", dest: "DST"}
 

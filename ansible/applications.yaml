@@ -1,25 +1,39 @@
 ---
 - hosts: all
+  roles: 
+    - kewlfft.aur
   tasks:
-  - name: install packages
-    become: true
-    become_method: sudo
-    package:
-      name: "{{item}}"
-      state: present
-    loop: "{{lookup('file', '{{playbook_dir}}/files/installed.txt').splitlines() }}"
-  - name: install virtualbox host
-    become: true
-    become_method: sudo
-    package: 
-      name: "linux{{''.join(ansible_kernel.split('.')[:2])}}-virtualbox-host-modules"
-      state: present
-  - name: install aur packages
-    become: true
-    become_method: sudo
-    package:
-      name: "{{item}}"
-      state: present
-    loop: "{{lookup('file', '{{playbook_dir}}/files/installed_aur.txt').splitlines() }}"
+          #    - name: install packages
+          #      become: true
+          #      package:
+          #        name: "{{item}}"
+          #        state: present
+          #      loop: "{{lookup('file', '{{playbook_dir}}/files/installed.txt').splitlines() }}"
+          #    - name: install virtualbox host
+          #      become: true
+          #      become_method: sudo
+          #      package: 
+          #        name: "linux{{''.join(ansible_kernel.split('.')[:2])}}-virtualbox-host-modules"
+          #        state: present
+    - name: Create aur build
+      become: yes
+      user:
+        name: aur_builder
+        group: wheel
+    - name: Add aur builder to sudoers
+      become: yes
+      lineinfile:
+        path: /etc/sudoers.d/11-install-aur-builder
+        line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+        create: yes
+        validate: 'visudo -cf %s'
+    - name: install aur packages
+      become: yes
+      become_user: aur_builder
+      aur:
+        name: "{{item}}"
+        state: present
+        use: trizen
+      loop: "{{lookup('file', '{{playbook_dir}}/files/installed_aur.txt').splitlines() }}"
 
 # if laptop, optimus-qt

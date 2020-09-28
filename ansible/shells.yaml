@@ -1,4 +1,4 @@
--/home/akail--
+---
 - hosts: all
   tasks:
   - name : install zsh
@@ -11,6 +11,7 @@
     package:
       name: bash
       state: present
+
   - name: Link shell configs
     file:
       src: '{{playbook_dir}}/files/{{item.src}}'
@@ -20,18 +21,13 @@
       - { dest: ".all_shellrc", src: "shellrc"}
       - { dest: ".my_bashrc", src: "bashrc"}
       - { dest: ".my_zshrc", src: "zshrc"}
+
   - name: Copy skeleton localrc
     copy:
       src: '{{playbook_dir}}/files/localrc'
       dest: '{{ansible_env.HOME}}/.localrc'
       force: no
-  - name: Add source my rc files
-    lineinfile:
-      path: '{{ansible_env.HOME}}/{{item.path}}'
-      line: 'source {{item.src}}'
-    loop:
-      - { path: '.zshrc', src: '{{ansible_env.HOME}}/.my_zshrc'}
-      - { path: '.bashrc', src: '{{ansible_env.HOME}}/.my_bashrc'}
+
   - name: Check oh-my-zsh directory exists
     stat: 'path={{ansible_env.HOME}}/.oh-my-zsh'
     register: status
@@ -76,4 +72,13 @@
   - name: Poetry file completion
     shell: 'poetry completions zsh > {{ansible_env.HOME}}/.zfunc/_poetry'
     when: not poetry_zfunc.stat.exists
+
+  - name: Add source my rc files
+    lineinfile:
+      path: '{{ansible_env.HOME}}/{{item.path}}'
+      line: 'source {{item.src}}'
+    loop:
+      - { path: '.zshrc', src: '{{ansible_env.HOME}}/.my_zshrc'}
+      - { path: '.bashrc', src: '{{ansible_env.HOME}}/.my_bashrc'}
+
 

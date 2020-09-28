@@ -12,18 +12,21 @@
         mode: '0755'
 
     - name: Link configuration files
-      file:
+      copy:
         src: "{{playbook_dir}}/files/{{item.src}}"
         dest: "{{ansible_env.HOME}}/{{item.dest}}"
-        state: link
       loop:
         - { src: "ssh_config", dest: ".ssh/config" }
 
     - name: Copy private keys
       copy:
-        src: "{{playbook_dir}}/vault/aws-dst.pem"
-        dest: "{{ansible_env.HOME}}/.ssh/aws-dst.pem"
+        src: "{{playbook_dir}}/vault/{{item.src}}"
+        dest: "{{ansible_env.HOME}}/.ssh/{{item.dest}}"
         decrypt: yes
-        mode: "0600"
-        backup: no
+        mode: "{{item.perm}}"
+      loop:
+        - { src: "aws-dst.pem", dest: "aws-dst.pem", perm: "0600"}
+        - { src: "dst-ftp.pem", dest: "dst-ftp.pem", perm: "0600"}
+        - { src: "id_rsa_blackfalcon", dest: "id_rsa", perm: "0600"}
+        - { src: "id_rsa_blackfalcon.pub", dest: "id_rsa.pub", perm: "0644"}
 
