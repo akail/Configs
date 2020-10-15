@@ -93,5 +93,63 @@ wiki2df(){
     pandoc -f vimwiki -o $2 $1
 }
 
+cocvim(){
+    OUTDIR=.vim
+    mkdir -p $OUTDIR
+
+    OUTPUT=$OUTDIR/coc-settings.json
+
+    if [[ -f "$OUTPUT" ]]; then
+        echo "$OUTPUT already exists. Aborting"
+        return 1
+    fi
+
+    echo "{" > $OUTPUT
+    echo "\"python.linting.enabled\": true," >> $OUTPUT
+
+    # Set python interpreter
+    python=`which python 2>/dev/null`
+    if [ $? -eq 0 ]; then
+        echo "Found python interpreter"
+        echo "\"python.pythonPath\": \"$python\"," >> $OUTPUT
+    fi
+
+    # find black
+    black=`which black 2>/dev/null`
+    if [ $? -eq 0 ]; then
+        echo "Found black"
+        echo "\"python.formatting.provider\": \"black\"," >> $OUTPUT
+        echo "\"python.formatting.blackPath\": \"$black\"," >> $OUTPUT
+        
+    fi
+
+    # find flake8
+    flake8=`which flake8 2>/dev/null`
+    if [ $? -eq 0 ]; then
+        echo "Found flake8"
+        echo "\"python.linting.flake8Enabled\": true," >> $OUTPUT
+        echo "\"python.linting.flake8Path\": \"$flake8\"," >> $OUTPUT
+    fi
+
+    # find bandit
+    bandit=`which bandit 2>/dev/null`
+    if [ $? -eq 0 ]; then
+        echo "Found bandit"
+        echo "\"python.linting.banditEnabled\": true," >> $OUTPUT
+        echo "\"python.linting.banditPath\": \"$bandit\"," >> $OUTPUT
+    fi
+    pydocstyle=`which pydocstyle 2>/dev/null`
+    if [ $? -eq 0 ]; then
+        echo "Found pydocstyle"
+        echo "\"python.linting.pydocstyleEnabled\": true," >> $OUTPUT
+        echo "\"python.linting.pydocstylePath\": \"$pydocstyle\"," >> $OUTPUT
+    fi
+
+    echo "\"python.linting.pylintEnabled\": false" >> $OUTPUT
+    echo "}" >> $OUTPUT
+}
+
 
 export PATH=$HOME/bin:$PATH
+
+
