@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: personal
   tasks:
     - name: Update pacman mirrors
       become: yes

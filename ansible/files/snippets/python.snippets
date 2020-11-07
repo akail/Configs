@@ -12,6 +12,16 @@ snippet todo "ToDo"
 
 endsnippet
 
+snippet firemain "fire main" b
+import fire
+
+def $1($2):
+	$0
+
+if __name__ == "__main__":
+	fire.Fire()
+endsnippet
+
 snippet ifmain "Ifmain" b
 def $1():
 	pass

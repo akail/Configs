@@ -24,3 +24,18 @@ Host hass
     HostName 192.168.1.100
     User root
     port 22
+
+Host biogen
+    HostName pilothead01.hpc.biogen.com
+    User akail
+    IdentityFile ~/.ssh/dst.pem
+
+Host aries
+    HostName 165.134.34.113
+    User akail
+    IdentityFile ~/.ssh/dst.pem
+
+Host apex
+    HostName apex.slu.edu
+    User akail
+    IdentityFile ~/.ssh/dst.pem

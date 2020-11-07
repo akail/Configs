@@ -1,7 +1,18 @@
 session_name: mlnotes
 start_directory: /home/akail/Projects/data-analysis/notes
 windows:
-  - window_name: nvim
+  - window_name: jupyter
     panes:
       - shell_command:
+        - jupyter lab
+  - window_name: ansible
+    panes:
+      - shell_command:
+        - cd ~/Projects/Configs/ansible
+      - shell_command:
+        - clear
+  - window_name: mlnotes
+    panes:
+      - shell_command:
+        - cd ~/Projects/ml-projects/notes
         - nvim main.tex

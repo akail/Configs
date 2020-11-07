@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: personal,virtualmachines
   tasks:
     - name: Insure ssh directories exist
       file:
@@ -29,4 +29,6 @@
         - { src: "dst-ftp.pem", dest: "dst-ftp.pem", perm: "0600"}
         - { src: "id_rsa_blackfalcon", dest: "id_rsa", perm: "0600"}
         - { src: "id_rsa_blackfalcon.pub", dest: "id_rsa.pub", perm: "0644"}
+        - { src: "dst.pem", dest: "dst.pem", perm: "0600"}
+        - { src: "dst.pub", dest: "dst.pub", perm: "0644"}
 

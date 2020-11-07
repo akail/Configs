@@ -4,6 +4,7 @@ ansible
 ansible-lint
 aspell
 autofs
+barrier
 beets
 bind-tools
 breath-icon-theme
@@ -201,3 +202,4 @@ krdc
 freerdp
 xdotool
 python-pipx
+pandoc

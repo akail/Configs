@@ -18,3 +18,21 @@ Order:
 * anaconda
 * autofs
 
+# Ideas
+* templates many things to split between work and home.  For instance, isolate work stuff in vm's
+
+
+# Snippets
+
+Add a string to the vars file
+  
+  ansible-vault encrypt-string --vault-password-file vault-password.txt 'stringthing' --name <stringname> >> vault/vars.yaml
+  
+view vars file
+
+  ansible-vault edit --vault-password-file vault-password.txt vault/vars.yaml
+  
+Encrypt a file
+
+  ansible-vault encrypt --vault-password-file vault-password.txt <filename>
+

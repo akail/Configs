@@ -9,3 +9,5 @@ dependencies:
   - kaggle
   - ipython
   - jupyterlab_code_formatter
+  - jupyter-lsp
+  - python-language-server

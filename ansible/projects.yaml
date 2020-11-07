@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: personal
   tasks:
     - name: Projects directory
       file:
@@ -16,6 +16,8 @@
         - github.com
         - git.kail.io
 
+- hosts: blackfalcon
+  tasks:
     - name: github projects
       git: 
         repo: "{{item.repo}}"

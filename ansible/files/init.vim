@@ -120,6 +120,8 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'vimwiki/vimwiki'
+
 call plug#end()
 
 " General Configurations
@@ -299,6 +301,11 @@ autocmd FileType python nnoremap <buffer> ]i :IPythonCellNextCell<CR>
 " map <Leader>h to send the current line or current selection to IPython
 autocmd FileType python nnoremap <buffer> <Leader>ih <Plug>SlimeLineSend
 
+"" VimWiki
+
+let g:vimwiki_list = [{'path': '~/Nextcloud/Notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 
 """"""""""""""""""""""""""""
 " Language Specific
@@ -376,6 +383,8 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
+nmap <Leader>pi :CocCommand python.setInterpreter<CR>
+
 " Startify configuration
 let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_change_to_vcs_root = 1
@@ -399,5 +408,4 @@ let g:startify_session_persistence = 1
 " Spelling Should be near the bottom
 set spell
 set spelllang=en_us
-
 

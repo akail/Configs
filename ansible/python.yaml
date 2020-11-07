@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: personal
   tasks:
     - include_role:
         name: "andrewrothstein.miniconda"
@@ -54,6 +54,7 @@
         - "@aquirdturtle/collapsible_headings"
         - "@krassowski/jupyterlab_go_to_definition"
         - "@ryantam626/jupyterlab_code_formatter"
+        - "@krassowski/jupyterlab-lsp"
 
 
     - name: Enable jupyterlab code formatter server extension
@@ -66,7 +67,4 @@
 
     - name: Install pipx applications
       shell: pipx install kaggle
-      loop:
-        - kaggle
-        - cookiecutter
-        - dvc
+      loop: "{{lookup('file', '{{playbook_dir}}/files/installed_pipx.txt').splitlines() }}"

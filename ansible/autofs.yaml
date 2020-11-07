@@ -1,5 +1,7 @@
 ---
-- hosts: all # move to local?
+- hosts: personal# move to local?
+  vars_files:
+    - vault/vars.yaml
   roles:
     - name: Mount OMV Data
       become: true
@@ -14,14 +16,14 @@
               fstype: cifs,rw,uid=1000,gid=1000
               url: "/AppData ://192.168.1.236/AppData /Media ://192.168.1.236/Media"
             - name: backups
-              fstype: "cifs,rw,uid=1000,gid=1000,username=akail,workgroup=WORKGROUP,password="
+              fstype: "cifs,rw,uid=1000,gid=1000,username=akail,workgroup=WORKGROUP,password={{omvpassword}}"
               url: '/Backups ://192.168.1.236/Backups'
             - name: storage
-              fstype: "cifs,rw,uid=1000,gid=1000,username=akail,workgroup=WORKGROUP,password="
+              fstype: "cifs,rw,uid=1000,gid=1000,username=akail,workgroup=WORKGROUP,password={{omvpassword}}"
               url: "/ ://192.168.1.236/Storage"
 
             - name: hass
-              fstype: "cifs,rw,uid=1000,gid=1000,username=hassio,workgroup=WORKGROUP,password="
+              fstype: "cifs,rw,uid=1000,gid=1000,username=hassio,workgroup=WORKGROUP,password={{hasssamba}}"
               url: "/config ://192.168.1.100/config"
 
 

@@ -12,6 +12,8 @@
       - { src: "pgcli.conf", dest: ".pgcli.conf" }
       - { src: "scripts", dest: "Apps" }
 
+- hosts: personal
+  tasks:
   - name: podman non-root setuid
     become: yes
     lineinfile:

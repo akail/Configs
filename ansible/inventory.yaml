@@ -2,14 +2,14 @@ all:
   hosts:
     blackfalcon:
   children:
-    personalcomputers:
+    personal:
       hosts:
         blackfalcon:
         bluefalcon:
     virtualmachines:
       hosts:
-        purplepidgin:
-    personalservers:
+        192.168.2.153:
+    servers:
       hosts:
         omv:
     dstservers:

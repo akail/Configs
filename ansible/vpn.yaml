@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: personal,virtualmachines
   tasks:
     - name: Check for preexisting connection for VPN.
       command: nmcli -t -f name,state connection

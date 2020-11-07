@@ -1,20 +1,20 @@
 ---
-- hosts: all
+- hosts: personal
   roles: 
     - kewlfft.aur
   tasks:
-          #    - name: install packages
-          #      become: true
-          #      package:
-          #        name: "{{item}}"
-          #        state: present
-          #      loop: "{{lookup('file', '{{playbook_dir}}/files/installed.txt').splitlines() }}"
-          #    - name: install virtualbox host
-          #      become: true
-          #      become_method: sudo
-          #      package: 
-          #        name: "linux{{''.join(ansible_kernel.split('.')[:2])}}-virtualbox-host-modules"
-          #        state: present
+    - name: install packages
+      become: true
+      package:
+        name: "{{item}}"
+        state: present
+        loop: "{{lookup('file', '{{playbook_dir}}/files/installed.txt').splitlines() }}"
+    - name: install virtualbox host
+      become: true
+      become_method: sudo
+      package: 
+        name: "linux{{''.join(ansible_kernel.split('.')[:2])}}-virtualbox-host-modules"
+      state: present
     - name: Create aur build
       become: yes
       user:
@@ -35,5 +35,8 @@
         state: present
         use: trizen
       loop: "{{lookup('file', '{{playbook_dir}}/files/installed_aur.txt').splitlines() }}"
+    - name: install pipx packages
+      shell: "pipx install {{item}}"
+      loop: "{{lookup('file', '{{playbook_dir}}/files/installed_pipx.txt').splitlines() }}"
 
 # if laptop, optimus-qt
