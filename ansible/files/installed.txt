@@ -4,6 +4,7 @@ ansible
 ansible-lint
 aspell
 autofs
+aws-cli
 barrier
 beets
 bind-tools
@@ -203,3 +204,4 @@ freerdp
 xdotool
 python-pipx
 pandoc
+imagewriter

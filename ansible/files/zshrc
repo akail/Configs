@@ -25,3 +25,6 @@ pshell() {
 alias zshrc='nvim $HOME/code/Configs/zshrc'
 
 source $HOME/.all_shellrc
+
+# Enable reverse history search
+bindkey '^R' history-incremental-search-backward

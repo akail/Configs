@@ -39,3 +39,7 @@ Host apex
     HostName apex.slu.edu
     User akail
     IdentityFile ~/.ssh/dst.pem
+
+Host retropie
+    HostName retropie
+    User pi
