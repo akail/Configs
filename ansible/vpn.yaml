@@ -22,3 +22,11 @@
                 vpn-type openconnect 
                 vpn.data \"gateway=connect.slu.edu,protocol=gp\""
       when: "'SLU' not in nmcli_connection_check.stdout"
+    - name: Add Hudson Alpha vpn
+      command: "nmcli connection add 
+                ifname tun0 
+                connection.id HA 
+                type vpn 
+                vpn-type openconnect 
+                vpn.data \"gateway=64.89.97.75,protocol=anyconnect\""
+      when: "'HA' not in nmcli_connection_check.stdout"
