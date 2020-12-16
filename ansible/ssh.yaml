@@ -27,7 +27,7 @@
       loop:
         - { src: "aws-dst.pem", dest: "aws-dst.pem", perm: "0600"}
         - { src: "dst-ftp.pem", dest: "dst-ftp.pem", perm: "0600"}
-        - { src: "dst.pem", dest: "dst.pem", perm: "0600"}
+        - { src: "dst", dest: "dst", perm: "0600"}
         - { src: "dst.pub", dest: "dst.pub", perm: "0644"}
 
 - hosts: blackfalcon,bluefalcon
@@ -39,5 +39,5 @@
         decrypt: yes
         mode: "{{item.perm}}"
       loop:
-        - { src: "id_rsa_{{inventory_hostname}}", dest: "id_rsa", perm: "0600"}
-        - { src: "id_rsa_{{inventory_hostname}}.pub", dest: "id_rsa.pub", perm: "0644"}
+        - { src: "{{inventory_hostname}}", dest: "id_rsa", perm: "0600"}
+        - { src: "{{inventory_hostname}}.pub", dest: "id_rsa.pub", perm: "0644"}
