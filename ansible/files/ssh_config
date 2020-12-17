@@ -28,17 +28,17 @@ Host hass
 Host biogen
     HostName pilothead01.hpc.biogen.com
     User akail
-    IdentityFile ~/.ssh/dst.pem
+    IdentityFile ~/.ssh/dst
 
 Host aries
-    HostName 165.134.34.113
+    HostName aries.ds.slu.edu
     User akail
-    IdentityFile ~/.ssh/dst.pem
+    IdentityFile ~/.ssh/dst
 
 Host apex
     HostName apex.slu.edu
     User akail
-    IdentityFile ~/.ssh/dst.pem
+    IdentityFile ~/.ssh/dst
 
 Host retropie
     HostName retropie

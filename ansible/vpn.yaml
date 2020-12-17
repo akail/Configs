@@ -30,3 +30,13 @@
                 vpn-type openconnect 
                 vpn.data \"gateway=64.89.97.75,protocol=anyconnect\""
       when: "'HA' not in nmcli_connection_check.stdout"
+
+    - name: Copy home.ovpn so its unecnrypted
+      copy:
+        src: "{{playbook_dir}}/vault/home.ovpn"
+        dest: "{{ansible_env.HOME}}/home.ovpn"
+        decrypt: yes
+  
+    - name: Add kail.io VPN
+      command: "nmcli connection import type openvpn file {{ansible_env.HOME}}/home.ovpn"
+      when: "'home' not in nmcli_connection_check.stdout"
