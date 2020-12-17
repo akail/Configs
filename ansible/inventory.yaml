@@ -8,7 +8,9 @@ all:
         bluefalcon:
     virtualmachines:
       hosts:
-        192.168.2.153:
+        ha:
+        slu:
+        biogen:
     servers:
       hosts:
         omv:
