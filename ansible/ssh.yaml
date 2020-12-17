@@ -27,8 +27,17 @@
       loop:
         - { src: "aws-dst.pem", dest: "aws-dst.pem", perm: "0600"}
         - { src: "dst-ftp.pem", dest: "dst-ftp.pem", perm: "0600"}
-        - { src: "id_rsa_blackfalcon", dest: "id_rsa", perm: "0600"}
-        - { src: "id_rsa_blackfalcon.pub", dest: "id_rsa.pub", perm: "0644"}
-        - { src: "dst.pem", dest: "dst.pem", perm: "0600"}
+        - { src: "dst", dest: "dst", perm: "0600"}
         - { src: "dst.pub", dest: "dst.pub", perm: "0644"}
 
+- hosts: blackfalcon,bluefalcon
+  tasks:
+    - name: Copy private keys
+      copy:
+        src: "{{playbook_dir}}/vault/{{item.src}}"
+        dest: "{{ansible_env.HOME}}/.ssh/{{item.dest}}"
+        decrypt: yes
+        mode: "{{item.perm}}"
+      loop:
+        - { src: "{{inventory_hostname}}", dest: "id_rsa", perm: "0600"}
+        - { src: "{{inventory_hostname}}.pub", dest: "id_rsa.pub", perm: "0644"}
