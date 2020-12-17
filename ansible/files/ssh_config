@@ -15,6 +15,11 @@ Host bluefalcon
     User akail
     Port 22
 
+Host blackfalcon
+    HostName 192.168.2.136
+    User akail
+    Port 22
+
 Host omv
     HostName 192.168.1.236
     User root
@@ -37,9 +42,15 @@ Host aries
 
 Host apex
     HostName apex.slu.edu
-    User akail
+    User andrew.kail
     IdentityFile ~/.ssh/dst.pem
 
 Host retropie
     HostName retropie
     User pi
+
+Host haib
+    HostName login.cluster.haib.org
+    User akail
+    IdentityFile ~/.ssh/dst
+
