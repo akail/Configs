@@ -7,12 +7,11 @@ case "$uname_info" in
     *MANJARO*)
         echo "Bootstrapping for Manjaro"
 	sudo pacman -S ansible
-
         ;;
     *Debian*)
         echo "Bootstrapping for Debian"
         sudo apt install pipx python3-venv
-        #pipx install ansible
+        pipx install ansible-base
         ;;
     *el8*)
         echo "Bootstrapping for EL7"
