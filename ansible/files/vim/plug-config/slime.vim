@@ -6,6 +6,8 @@ let g:slime_default_config = {
 let g:slime_dont_ask_default = 1
 
 " map <Leader>h to send the current line or current selection to IPython
-autocmd FileType python nnoremap <buffer> <Leader>ih <Plug>SlimeLineSend
+if $ENABLE_VIM_FULL=="1"
+    autocmd FileType python nnoremap <buffer> <Leader>ih <Plug>SlimeLineSend
+endif
 
 

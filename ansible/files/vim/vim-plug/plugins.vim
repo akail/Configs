@@ -34,17 +34,6 @@ Plug 'majutsushi/tagbar'
 " Vim Surround
 Plug 'tpope/vim-surround'
 
-" jedi-vim
-"if has('nvim')
-    "Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
-"else
-    "Plug 'Shougo/deoplete.nvim'
-    "Plug 'roxma/nvim-yarp'
-    "Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-
-"Plug 'deoplete-plugins/deoplete-jedi'
-
 " SuperTab
 Plug 'ervandew/supertab'
 
@@ -70,38 +59,11 @@ Plug 'christoomey/vim-tmux-navigator'
 " Vimux
 Plug 'benmills/vimux'
 
-" Testing stuff
-Plug 'janko/vim-test'
-
-" Python syntax highlighting
-" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-"Plug 'vim-python/python-syntax'
-
-" Snippets plugin
-if has('python3')
-    Plug 'SirVer/ultisnips'
-endif
-Plug 'honza/vim-snippets'
-
-" Latex support s
-Plug 'lervag/vimtex'
-
-" Slime and IPython Cells 
-Plug 'jpalardy/vim-slime', { 'for': 'python' }
-Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
-
 " Vim indentation guides
 Plug 'nathanaelkane/vim-indent-guides'
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'
-
-" Vim multiple cursors
-" Messes with next buffer 
-"Plug 'terryma/vim-multiple-cursors'
-
-" Auto-increment dates
-Plug 'tpope/vim-speeddating'
 
 " Repeat better with .
 Plug 'tpope/vim-repeat'
@@ -111,12 +73,25 @@ if $ENABLE_DEVICONS=="1"
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 endif
 
-Plug 'mhinz/vim-startify'
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if $ENABLE_VIM_FULL=="1"
 
-Plug 'vimwiki/vimwiki'
+    " Testing stuff
+
+    if has('python3')
+        Plug 'SirVer/ultisnips'
+    endif
+    Plug 'mhinz/vim-startify'
+    Plug 'janko/vim-test'
+    Plug 'honza/vim-snippets'
+    Plug 'lervag/vimtex'
+    Plug 'jpalardy/vim-slime', { 'for': 'python' }
+    Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'vimwiki/vimwiki'
+endif
+
 
 call plug#end()

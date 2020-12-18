@@ -73,6 +73,3 @@
 
   - name: Install coc.nvim plugins
     shell: nvim +"CocInstall -sync coc-python coc-html coc-json coc-css coc-yaml" +"qa"
-    
-
-
