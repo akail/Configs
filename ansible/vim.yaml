@@ -21,12 +21,12 @@
 
   - name: Insure directories exist
     file:
-      path: '/home/akail/{{item.path}}'
+      path: '{{ansible_env.HOME}}/{{item.path}}'
       state: directory
       owner: akail
       group: akail
     loop:
-      - { path: ".config/nvim"}
+      - { path: ".config"}
       - { path: ".local/share/nvim/site/autoload"}
       - { path: ".vim/autoload"}
       - { path: ".vim/plugged"}
@@ -46,23 +46,20 @@
 
   - name: Link vim configs
     file:
-      src: '{{playbook_dir}}/files/init.vim'
-      dest: '/home/akail/{{item.dest}}'
+      src: '{{playbook_dir}}/files/vim'
+      dest: '{{ansible_env.HOME}}/.config/nvim'
       state: link
-    loop:
-      - { dest: ".config/nvim/init.vim" }
-      - { dest: ".vimrc" }
 
-  - name: Link UltiSnips files
+  - name: .vimrc source init.vim
     file:
-      src: "{{playbook_dir}}/files/snippets"
-      dest: /home/akail/.config/nvim/UltiSnips
+      src: '{{playbook_dir}}/files/vimrc'
+      dest: '{{ansible_env.HOME}}/.vimrc'
       state: link
 
   - name: Download vim-plug
     get_url:
       url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-      dest: '/home/akail/{{item.dest}}'
+      dest: '{{ansible_env.HOME}}/{{item.dest}}'
       mode: 0644
     loop:
       - { dest: ".local/share/nvim/site/autoload/plug.vim" }
