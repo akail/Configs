@@ -13,4 +13,4 @@ windows:
         - cd /mnt/hass/config
         - clear
       - shell_command:
-        - ssh root@hass.local
+        - ssh hass

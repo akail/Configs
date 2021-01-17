@@ -30,6 +30,7 @@ alias pacman='sudo pacman'
 alias taif='tail -f'
 alias spotify="/usr/bin/spotify --force-device-scale-factor=2"
 alias ghist="history | grep -i "
+alias wiki='vi +"VimwikiIndex"'
 
 home_conda() {
     if [[ -d $HOME/miniconda3 ]]

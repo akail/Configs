@@ -59,11 +59,13 @@
     user:
       name: akail
       shell: /usr/bin/zsh
+      # TODO: How to handle with systems where its not easy to set the login shell, such as in an ldap managed system
 
   - name: Make poetry auto completion directory
     file:
       path: '{{ansible_env.HOME}}/.zfunc'
       state: directory
+      # TODO: Make sure poetry is installed first
 
   - name: Poetry file status
     stat: 'path={{ansible_env.HOME}}/.zfunc/_poetry'

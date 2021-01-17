@@ -205,3 +205,4 @@ xdotool
 python-pipx
 pandoc
 imagewriter
+sshpass

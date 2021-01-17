@@ -16,3 +16,7 @@ windows:
       - shell_command:
         - cd ~/Projects/ml-projects/notes
         - nvim main.tex
+  - window_name: zoo
+    panes:
+      - shell_command:
+        - cd ~/Projects/ml-projects/model-zoo
