@@ -29,6 +29,8 @@
         - { src: "dst-ftp.pem", dest: "dst-ftp.pem", perm: "0600"}
         - { src: "dst", dest: "dst", perm: "0600"}
         - { src: "dst.pub", dest: "dst.pub", perm: "0644"}
+        - { src: "dst-rsa", dest: "dst-rsa", perm: "0600"}
+        - { src: "dst-rsa.pub", dest: "dst-rsa.pub", perm: "0644"}
 
 - hosts: blackfalcon,bluefalcon
   tasks:

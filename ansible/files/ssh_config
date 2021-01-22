@@ -20,6 +20,11 @@ Host blackfalcon
     User akail
     Port 22
 
+Host blackfalcon.lan
+    HostName 192.168.1.21
+    User akail
+    Port 22
+
 Host omv
     HostName 192.168.1.236
     User root
@@ -34,6 +39,12 @@ Host biogen
     HostName pilothead01.hpc.biogen.com
     User akail
     IdentityFile ~/.ssh/dst
+
+Host penguin
+    HostName 12.53.5.70
+    User akail
+    IdentityFile ~/.ssh/dst-rsa
+
 
 Host aries
     HostName aries.ds.slu.edu
