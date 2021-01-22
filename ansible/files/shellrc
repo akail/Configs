@@ -151,6 +151,13 @@ cocvim(){
     echo "}" >> $OUTPUT
 }
 
+_copy(){
+    cat | xclip -selection clipboard
+}
+
+_paste(){
+    xclip -selection clipboard -o
+}
 
 export PATH=$HOME/bin:$PATH
 
