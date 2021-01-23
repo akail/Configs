@@ -76,7 +76,7 @@ endif
 
 Plug 'sheerun/vim-polyglot'
 
-if $ENABLE_VIM_FULL=="1"
+if $ENABLE_VIM_FULL==1
 
     " Testing stuff
 

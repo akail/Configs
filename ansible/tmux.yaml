@@ -6,31 +6,54 @@
     package:
       name: tmux
       state: present
-  - name: install tmuxp
-    become: true
-    package:
-      name: tmuxp
-      state: present
+
   - name: Insure tmux directories exist
     file:
       path: '/home/akail/{{item.path}}'
       state: directory
     loop:
       - { path: ".tmux/plugins"}
-      #- { path: ""}
+
   - name: Link tmux configuration
     file:
-      src: "{{playbook_dir}}/files/tmux.conf"
+      src: "{{playbook_dir}}/files/tmux/tmux.conf"
       dest: /home/akail/.tmux.conf
       state: link
+
+  - name: Link tmux subconfigs
+    file:
+      src: "{{playbook_dir}}/files/tmux/{{item}}"
+      dest: "/home/akail/.tmux/{{item}}"
+      state: link
+    loop:
+      - full_status_bar.conf
+      - keymappings.conf
+      - minimal_status_bar.conf
+      - plugins.conf
+      - settings.conf
+      - theme.conf
+      - variables.conf
+
+  - name: Clone tmux package manager
+    git:
+      repo: https://github.com/tmux-plugins/tpm
+      dest: "~/.tmux/plugins/tpm"
+
+  - name: Install tmux plugins
+    shell: ~/.tmux/plugins/tpm/bin/install_plugins
+
+# Install tmuxp on personal computers
+- hosts: personal
+  tasks:
+  - name: install tmuxp
+    become: true
+    package:
+      name: tmuxp
+      state: present
+
   - name: Link tmuxp directory
     file:
       src: "{{playbook_dir}}/files/tmuxp"
       dest: /home/akail/.tmuxp
       state: link
-  - name: Clone tmux package manager
-    git:
-      repo: https://github.com/tmux-plugins/tpm
-      dest: "~/.tmux/plugins/tpm"
-  - name: Install tmux plugins
-    shell: ~/.tmux/plugins/tpm/bin/install_plugins
+

@@ -23,7 +23,6 @@ esptool
 fd
 firefox
 flameshot
-flameshot
 flatpak
 gimp
 git

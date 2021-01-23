@@ -7,7 +7,6 @@ brscan4
 freecad
 pavumeter
 podman-compose
-qownnotes
 redshift-qt
 slack-desktop
 spotify

@@ -6,6 +6,7 @@ all:
       hosts:
         blackfalcon:
         bluefalcon:
+        redhawk:
     virtualmachines:
       hosts:
         ha:
